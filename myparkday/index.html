@@ -1,0 +1,502 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>MyParkDay • Roteiros inteligentes para parques</title>
+  <meta name="description" content="MyParkDay: roteiros inteligentes para parques com otimização do tempo, organização do dia e melhor experiência."/>
+  <meta name="theme-color" content="#0EA5E9"/>
+
+  <!-- Open Graph (para compartilhar no WhatsApp/LinkedIn) -->
+  <meta property="og:title" content="MyParkDay • Roteiros inteligentes para parques"/>
+  <meta property="og:description" content="Organize seu dia no parque com mais estratégia e menos espera."/>
+  <meta property="og:type" content="website"/>
+
+  <style>
+    :root{
+      /* Paleta clara (exclusiva do MyParkDay) */
+      --bg: #F7FAFF;
+      --surface: #FFFFFF;
+      --surface2: #F2F6FF;
+      --text: #0F172A;
+      --muted: #475569;
+      --line: #E2E8F0;
+
+      --brand: #0EA5E9;      /* azul */
+      --brand2: #10B981;     /* verde */
+      --accent: #F59E0B;     /* âmbar */
+      --danger: #EF4444;
+
+      --shadow: 0 14px 40px rgba(2,6,23,0.10);
+      --radius: 18px;
+      --radius2: 24px;
+
+      --max: 1120px;
+      --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+
+    *{ box-sizing: border-box; }
+    html,body{ margin:0; padding:0; font-family: var(--font); background: var(--bg); color: var(--text); }
+
+    .wrap{ width:min(var(--max), calc(100% - 40px)); margin:0 auto; }
+    a{ color: inherit; text-decoration: none; }
+    .muted{ color: var(--muted); }
+
+    /* NAV */
+    .nav{
+      position: sticky; top: 0; z-index: 20;
+      backdrop-filter: blur(10px);
+      background: rgba(247,250,255,0.70);
+      border-bottom: 1px solid rgba(226,232,240,0.9);
+    }
+    .nav-inner{
+      display:flex; align-items:center; justify-content:space-between;
+      padding: 14px 0;
+      gap: 14px;
+    }
+    .brand{
+      display:flex; align-items:center; gap: 12px;
+      min-width: 240px;
+    }
+    .brand-logo{
+      width: 44px; height: 44px;
+      border-radius: 14px;
+      background: white;
+      border: 1px solid var(--line);
+      padding: 6px;
+      box-shadow: 0 10px 30px rgba(2,6,23,0.08);
+      object-fit: contain;
+    }
+    .brand-title{ font-weight: 900; letter-spacing: -0.3px; line-height: 1.05; }
+    .brand-sub{ font-size: 12.5px; color: var(--muted); }
+
+    .nav-links{ display:flex; gap: 18px; align-items:center; }
+    .nav-links a{ font-size: 14px; color: var(--muted); }
+    .nav-links a:hover{ color: var(--text); }
+
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding: 11px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: white;
+      color: var(--text);
+      font-weight: 700;
+      font-size: 14px;
+      box-shadow: 0 10px 26px rgba(2,6,23,0.07);
+      cursor: pointer;
+      transition: transform .12s ease, box-shadow .12s ease;
+      white-space: nowrap;
+    }
+    .btn:hover{ transform: translateY(-1px); box-shadow: 0 14px 30px rgba(2,6,23,0.10); }
+    .btn.primary{
+      border: 0;
+      color: white;
+      background: linear-gradient(90deg, var(--brand), var(--brand2));
+    }
+    .btn.ghost{
+      background: transparent;
+      box-shadow: none;
+    }
+
+    /* HERO */
+    .hero{
+      padding: 40px 0 26px;
+      background:
+        radial-gradient(800px 400px at 70% 0%, rgba(14,165,233,0.18), transparent 65%),
+        radial-gradient(700px 380px at 0% 15%, rgba(16,185,129,0.16), transparent 60%);
+    }
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 24px;
+      align-items: center;
+    }
+    .kicker{
+      display:inline-flex; gap: 8px; align-items:center;
+      padding: 7px 10px;
+      background: rgba(14,165,233,0.10);
+      border: 1px solid rgba(14,165,233,0.20);
+      border-radius: 999px;
+      font-size: 12.5px;
+      color: #0B3B5A;
+      font-weight: 700;
+      width: fit-content;
+    }
+    h1{
+      margin: 14px 0 10px;
+      font-size: clamp(28px, 4vw, 44px);
+      letter-spacing: -1px;
+      line-height: 1.06;
+    }
+    .hero p{ margin: 0 0 18px; color: var(--muted); font-size: 15.5px; line-height: 1.55; }
+    .cta-row{ display:flex; gap: 10px; flex-wrap: wrap; align-items:center; }
+
+    .hero-card{
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow);
+      padding: 16px;
+    }
+
+    /* “Phone” mock */
+    .phone{
+      width: 100%;
+      max-width: 340px;
+      margin-left: auto;
+      border-radius: 34px;
+      padding: 12px;
+      background: linear-gradient(180deg, #0f172a 0%, #111827 100%);
+      box-shadow: 0 30px 70px rgba(2,6,23,0.25);
+    }
+    .phone-inner{
+      border-radius: 26px;
+      overflow: hidden;
+      background: #0b1220;
+      border: 1px solid rgba(255,255,255,0.10);
+    }
+    .phone-shot{
+      display:block;
+      width: 100%;
+      height: auto;
+    }
+    .phone-caption{
+      padding: 10px 12px;
+      color: rgba(255,255,255,0.82);
+      font-size: 12.5px;
+      background: rgba(255,255,255,0.06);
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    /* SECTIONS */
+    section{ padding: 30px 0; }
+    .section-title{
+      font-size: 22px;
+      letter-spacing: -0.4px;
+      margin: 0 0 8px;
+    }
+    .section-sub{ margin: 0 0 18px; color: var(--muted); line-height: 1.55; }
+
+    .grid-3{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+    .card{
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: 0 10px 28px rgba(2,6,23,0.08);
+      padding: 16px;
+    }
+    .card h3{ margin: 0 0 6px; font-size: 16px; }
+    .card p{ margin: 0; color: var(--muted); font-size: 14px; line-height: 1.55; }
+
+    .pill{
+      display:inline-flex;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(16,185,129,0.10);
+      border: 1px solid rgba(16,185,129,0.22);
+      color: #0B3B2A;
+      font-weight: 800;
+      font-size: 12px;
+      gap: 8px;
+      align-items:center;
+      width: fit-content;
+    }
+    .pill.alt{
+      background: rgba(245,158,11,0.14);
+      border-color: rgba(245,158,11,0.28);
+      color: #5A3B0B;
+    }
+
+    /* Screenshots */
+    .shots{
+      display:grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+    .shot{
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(2,6,23,0.08);
+    }
+    .shot img{
+      display:block;
+      width:100%;
+      height: auto;
+    }
+    .shot .cap{
+      padding: 10px 12px;
+      font-size: 13px;
+      color: var(--muted);
+      border-top: 1px solid var(--line);
+      background: rgba(242,246,255,0.6);
+    }
+
+    /* How it works */
+    .steps{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+    .step{
+      background: linear-gradient(180deg, #fff 0%, #f7fbff 100%);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 16px;
+      box-shadow: 0 10px 28px rgba(2,6,23,0.07);
+    }
+    .step b{
+      display:inline-flex;
+      width: 28px; height: 28px;
+      border-radius: 999px;
+      align-items:center; justify-content:center;
+      background: rgba(14,165,233,0.12);
+      border: 1px solid rgba(14,165,233,0.22);
+      margin-right: 8px;
+    }
+
+    /* FAQ */
+    details{
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 14px 16px;
+      box-shadow: 0 10px 26px rgba(2,6,23,0.06);
+    }
+    details + details{ margin-top: 10px; }
+    summary{ cursor:pointer; font-weight: 800; }
+    details p{ margin: 10px 0 0; color: var(--muted); line-height: 1.55; }
+
+    /* Footer */
+    footer{
+      padding: 26px 0 34px;
+      border-top: 1px solid var(--line);
+      background: rgba(255,255,255,0.55);
+    }
+    .foot{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .foot small{ color: var(--muted); }
+
+    /* Responsive */
+    @media (max-width: 980px){
+      .hero-grid{ grid-template-columns: 1fr; }
+      .phone{ margin: 0; max-width: 380px; }
+      .shots{ grid-template-columns: repeat(2, 1fr); }
+      .grid-3{ grid-template-columns: 1fr; }
+      .steps{ grid-template-columns: 1fr; }
+      .nav-links{ display:none; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="../">
+        <img class="brand-logo" src="assets/logo-myparkday.png" alt="MyParkDay"/>
+        <div>
+          <div class="brand-title">MyParkDay</div>
+          <div class="brand-sub">Roteiros inteligentes para parques</div>
+        </div>
+      </a>
+
+      <div class="nav-links">
+        <a href="#prints">Telas</a>
+        <a href="#funcionalidades">Funcionalidades</a>
+        <a href="#como-funciona">Como funciona</a>
+        <a href="#faq">FAQ</a>
+      </div>
+
+      <div style="display:flex; gap:10px; align-items:center;">
+        <a class="btn ghost" href="../">← VeDigitalHub</a>
+        <a class="btn primary" href="#baixar">Baixar agora</a>
+      </div>
+    </div>
+  </div>
+
+  <header class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="kicker">⏱️ Otimize seu dia no parque</div>
+        <h1>Menos tempo na fila.<br/>Mais atrações no seu roteiro.</h1>
+        <p>
+          O <b>MyParkDay</b> ajuda você a planejar e organizar o dia no parque com roteiros inteligentes,
+          priorização de atrações e uma experiência mais fluida para toda a família.
+        </p>
+
+        <div class="cta-row" id="baixar">
+          <!-- Troque os links quando tiver -->
+          <a class="btn primary" href="#" onclick="return false;">Google Play</a>
+          <a class="btn" href="#" onclick="return false;">App Store</a>
+          <a class="btn" href="#prints">Ver telas</a>
+        </div>
+
+        <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top: 14px;">
+          <span class="pill">✅ Roteiros e organização</span>
+          <span class="pill alt">✨ Melhor experiência</span>
+        </div>
+      </div>
+
+      <div class="hero-card" aria-label="Preview do app">
+        <div style="display:flex; justify-content:space-between; align-items:center; gap:10px; margin-bottom:10px;">
+          <div>
+            <b>Preview</b><div class="muted" style="font-size:13px;">Exemplo de tela</div>
+          </div>
+          <span class="pill alt">Novo</span>
+        </div>
+
+        <div class="phone">
+          <div class="phone-inner">
+            <!-- Print principal (troque pelo seu melhor print vertical) -->
+            <img class="phone-shot" src="assets/shot-01.png" alt="Tela do MyParkDay"/>
+            <div class="phone-caption">Dica: use prints 1080×2340 para melhor qualidade.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section id="funcionalidades">
+    <div class="wrap">
+      <h2 class="section-title">O que o MyParkDay faz por você</h2>
+      <p class="section-sub">Um resumo direto das funcionalidades — ajuste os textos conforme seu app.</p>
+
+      <div class="grid-3">
+        <div class="card">
+          <h3>Roteiros inteligentes</h3>
+          <p>Monte e ajuste seu roteiro priorizando atrações e evitando deslocamentos desnecessários.</p>
+        </div>
+        <div class="card">
+          <h3>Otimização do tempo</h3>
+          <p>Apoio para decidir o que fazer primeiro e como encaixar o dia de forma mais eficiente.</p>
+        </div>
+        <div class="card">
+          <h3>Experiência melhor</h3>
+          <p>Planejamento simples para reduzir estresse, organizar família e aproveitar mais o parque.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="prints">
+    <div class="wrap">
+      <h2 class="section-title">Telas do app</h2>
+      <p class="section-sub">Inclua aqui os prints mais “vendedores”: home, roteiro, detalhes, mapas/tempos, etc.</p>
+
+      <div class="shots">
+        <div class="shot">
+          <img src="assets/shot-01.png" alt="Tela 1"/>
+          <div class="cap">Tela inicial / visão do dia</div>
+        </div>
+        <div class="shot">
+          <img src="assets/shot-02.png" alt="Tela 2"/>
+          <div class="cap">Roteiro e ordem das atrações</div>
+        </div>
+        <div class="shot">
+          <img src="assets/shot-03.png" alt="Tela 3"/>
+          <div class="cap">Detalhes e dicas</div>
+        </div>
+        <div class="shot">
+          <img src="assets/shot-04.png" alt="Tela 4"/>
+          <div class="cap">Ajustes e preferências</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="como-funciona">
+    <div class="wrap">
+      <h2 class="section-title">Como funciona</h2>
+      <p class="section-sub">Explique em 3 passos para aumentar conversão.</p>
+
+      <div class="steps">
+        <div class="step">
+          <div><b>1</b><strong>Escolha o parque e a data</strong></div>
+          <p class="muted">Defina o contexto do seu dia para montar um roteiro adequado.</p>
+        </div>
+        <div class="step">
+          <div><b>2</b><strong>Monte seu roteiro</strong></div>
+          <p class="muted">Selecione atrações e organize a prioridade conforme seu estilo.</p>
+        </div>
+        <div class="step">
+          <div><b>3</b><strong>Aproveite e ajuste</strong></div>
+          <p class="muted">Siga o roteiro e ajuste conforme sua realidade durante o dia.</p>
+        </div>
+      </div>
+
+      <div style="margin-top:16px; display:flex; gap:10px; flex-wrap:wrap;">
+        <a class="btn primary" href="#" onclick="return false;">Baixar no Google Play</a>
+        <a class="btn" href="#" onclick="return false;">Baixar na App Store</a>
+        <a class="btn" href="../#contato">Preciso de suporte</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="wrap">
+      <h2 class="section-title">Perguntas frequentes</h2>
+      <p class="section-sub">Se quiser, eu ajusto essas respostas para refletir exatamente o que o app faz hoje.</p>
+
+      <details>
+        <summary>O MyParkDay é gratuito?</summary>
+        <p>Você pode oferecer uma versão gratuita e recursos premium. Coloque aqui a política atual do app.</p>
+      </details>
+
+      <details>
+        <summary>Funciona offline?</summary>
+        <p>Explique se algumas telas funcionam sem internet e o que depende de dados online.</p>
+      </details>
+
+      <details>
+        <summary>Onde encontro suporte?</summary>
+        <p>Use um e-mail de suporte e, se quiser, um WhatsApp. Você pode linkar para a seção de contato do site principal.</p>
+      </details>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap foot">
+      <div>
+        <div style="display:flex; align-items:center; gap:10px;">
+          <img class="brand-logo" src="assets/logo-myparkday.png" alt="MyParkDay"/>
+          <div>
+            <div class="brand-title">MyParkDay</div>
+            <small class="muted">by VeDigitalHub</small>
+          </div>
+        </div>
+        <div style="margin-top:10px;">
+          <small class="muted">© <span id="year"></span> VeDigitalHub. Todos os direitos reservados.</small>
+        </div>
+      </div>
+
+      <div>
+        <small class="muted"><b>Links</b></small><br/>
+        <small><a href="#" onclick="return false;">Política de Privacidade</a></small><br/>
+        <small><a href="#" onclick="return false;">Termos de Uso</a></small><br/>
+        <small><a href="../">Voltar ao site</a></small>
+      </div>
+
+      <div>
+        <small class="muted"><b>Download</b></small><br/>
+        <small><a href="#" onclick="return false;">Google Play</a></small><br/>
+        <small><a href="#" onclick="return false;">App Store</a></small>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
