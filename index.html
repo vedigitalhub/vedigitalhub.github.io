@@ -544,7 +544,7 @@
 
             <div class="card-actions">
               <!-- Troque os links abaixo quando tiver -->
-              <a class="btn" href="/myparkday/">Site do app</a>
+              <a class="btn" href="./myparkday/index.html" target="_blank" rel="noopener">Site do app</a>
               <a class="btn" href="#" onclick="return false;">App Store</a>
               <a class="btn" href="#" onclick="return false;">Google Play</a>
             </div>
@@ -636,30 +636,31 @@
         </div>
 
         <div class="contact">
-          <form id="contactForm">
-            <label for="nome">Nome</label>
-            <input id="nome" name="nome" placeholder="Seu nome" required />
+        <form id="contactForm" action="https://api.web3forms.com/submit" method="POST">
+          <input type="hidden" name="access_key" value="61feffd3-8b6f-495a-88f4-bbe08200c5d5">
+          <input type="hidden" name="subject" value="Contato pelo site - VeDigitalHub">
+          <input type="hidden" name="from_name" value="VeDigitalHub - Site">
 
-            <label for="email">E-mail</label>
-            <input id="email" name="email" type="email" placeholder="vedigitalhub@gmail.com" required />
+          <!-- Anti-spam simples (honeypot): -->
+          <input type="checkbox" name="botcheck" class="hidden" style="display:none;">
 
-            <label for="msg">Mensagem</label>
-            <textarea id="msg" name="msg" placeholder="Conte rapidamente o que você precisa..." required></textarea>
+          <label>Nome</label>
+          <input id="nome" name="name" required>
 
-            <div style="display:flex; gap:10px; margin-top:12px; flex-wrap:wrap;">
-              <button class="btn primary" type="submit">Enviar</button>
-              <a class="btn" id="whatsLink" href="#" target="_blank" rel="noreferrer">Chamar no WhatsApp</a>
-            </div>
+          <label>E-mail</label>
+          <input id="email" name="email" type="email" required>
 
-            <p style="margin:10px 0 0; color:var(--muted2); font-size:12px; line-height:1.5;">
-              * Este envio abre seu cliente de e-mail (sem backend). Se preferir formulário com recebimento direto,
-              substituímos por Formspree/Web3Forms em 3 minutos.
-            </p>
-          </form>
+          <label>Mensagem</label>
+          <textarea id="msg" name="message" rows="5" required></textarea>
+
+          <button class="btn primary" type="submit">Enviar</button>
+          <p id="formStatus" class="muted" style="margin-top:10px;"></p>
+        </form>
+
 
           <aside class="contact-side">
             <b style="display:block; font-size:15px;">Fale por outro canal</b>
-            <p>Escolha o melhor meio. Você pode editar os contatos abaixo no código.</p>
+            <!-- <p>Escolha o melhor meio. Você pode editar os contatos abaixo no código.</p> -->
 
             <div class="row">
               <a class="link" id="emailLink" href="#">
@@ -670,13 +671,13 @@
                 </span>
               </a>
 
-              <a class="link" id="phoneLink" href="#">
+              <!-- <a class="link" id="phoneLink" href="#">
                 <span class="dot"></span>
                 <span>
                   <b style="display:block; font-size:14px;">WhatsApp</b>
                   <span style="color:var(--muted); font-size:13px;">(85) 00000-0000</span>
                 </span>
-              </a>
+              </a> -->
 
               <div class="link" style="opacity:0.95;">
                 <span class="dot"></span>
@@ -694,7 +695,7 @@
     <footer>
       <div class="wrap" style="display:flex; flex-wrap:wrap; gap:10px; justify-content:space-between; align-items:center;">
         <span>© <span id="year"></span> Sua Empresa. Todos os direitos reservados.</span>
-        <span style="color:var(--muted);">CNPJ: 00.000.000/0000-00 • Política de Privacidade (opcional)</span>
+        <span style="color:var(--muted);">CNPJ: 64.360.397/0001-05 • Política de Privacidade (opcional)</span>
       </div>
     </footer>
   </main>
