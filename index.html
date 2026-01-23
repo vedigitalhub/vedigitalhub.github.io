@@ -7,19 +7,19 @@
   <title>Sua Empresa | Apps e Soluções</title>
 
   <style>
-    :root{
-    /* ====== THEME TOKENS (serão sobrescritos pelo seletor) ====== */
-    --bg: #0b1020;
+:root{
+    /* ====== PALETA: Dark Navy + Energia ====== */
+    --bg: #071225;
     --card: rgba(255,255,255,0.06);
-    --card2: rgba(255,255,255,0.08);
-    --text: rgba(255,255,255,0.92);
-    --muted: rgba(255,255,255,0.72);
-    --muted2: rgba(255,255,255,0.60);
-    --line: rgba(255,255,255,0.12);
-    --brand1:#7c3aed;
-    --brand2:#22d3ee;
+    --card2: rgba(255,255,255,0.09);
+    --text: rgba(242,247,255,0.95);
+    --muted: rgba(181,195,224,0.80);
+    --muted2: rgba(181,195,224,0.66);
+    --line: rgba(255,255,255,0.14);
+    --brand1:#2DD4BF; /* teal */
+    --brand2:#F59E0B; /* âmbar */
     --ok:#34d399;
-    --warn:#fbbf24;
+    --warn:#fb7185;
 
     /* ====== FIXOS ====== */
     --shadow: 0 20px 60px rgba(0,0,0,0.45);
@@ -27,7 +27,7 @@
     --radius2: 22px;
     --max: 1120px;
     --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
-    }
+  }
 
 
     *{ box-sizing:border-box; }
@@ -326,6 +326,79 @@
       .kpis{ grid-template-columns: 1fr; max-width: 100%; }
       .menu{ display:none; }
     }
+
+    .brand-logo-wrap{
+      width: 90px;
+      height: 90px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid var(--line);
+      overflow: hidden;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .brand-logo{
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+
+      /* Zoom + ajuste fino de centralização */
+      transform: translateY(6px) scale(1.95);
+      transform-origin: center;
+    }
+
+
+    .brand-name{
+      font-size: 20px;        /* aumente aqui se quiser mais (22/24) */
+      font-weight: 800;
+      letter-spacing: -0.3px;
+      line-height: 1.05;
+      margin-bottom: 2px;
+    }
+
+    .brand-white{
+      color: rgba(242,247,255,0.96); /* branco do tema */
+    }
+
+    .brand-accent{
+      color: #7C3AED;         /* roxo “padrão” */
+      /* opcional: dá um brilho leve no Hub */
+      text-shadow: 0 10px 30px rgba(124,58,237,0.22);
+    }
+
+    .brand-sub{
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .app-icon-wrap{
+      width: 46px;
+      height: 46px;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      background: #ffffff;
+
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      flex: 0 0 auto;
+    }
+
+    .app-icon-img{
+      width: 100%;
+      height: 100%;
+      object-fit: contain;      /* não corta */
+      transform: scale(0.96);   /* diminui um pouco para não encostar nas bordas */
+      transform-origin: center;
+      display: block;
+    }
+
+
+
   </style>
 </head>
 
@@ -333,10 +406,14 @@
   <div class="nav">
     <div class="wrap nav-inner">
       <div class="brand">
-        <div class="logo" aria-hidden="true"></div>
+        <div class="brand-logo-wrap" aria-label="VeDigitalHub">
+          <img class="brand-logo" src="assets/logo-foguete.png" alt="VeDigitalHub" />
+        </div>
         <div>
-          <b>Sua Empresa</b><br/>
-          <span style="color:var(--muted); font-size:12px;">Apps e soluções digitais</span>
+          <div class="brand-name">
+            <span class="brand-white">VeDigital</span><span class="brand-accent">Hub</span>
+          </div>
+          <span class="brand-sub">Apps e soluções digitais</span>
         </div>
       </div>
 
@@ -346,7 +423,7 @@
         <a href="#contato">Contato</a>
       </nav>
 
-      <div style="display:flex; gap:10px; align-items:center;">
+      <!-- <div style="display:flex; gap:10px; align-items:center;">
         <select id="themeSelect" class="btn" style="padding:10px 12px;">
             <option value="dark-tech">Dark Tech (recomendada)</option>
             <option value="dark-navy-energy">Dark Navy + Energia</option>
@@ -357,7 +434,7 @@
         </select>
 
         <button id="randomTheme" class="btn" type="button" title="Testar rapidamente">Aleatória</button>
-        </div>
+        </div> -->
 
 
       <a class="btn primary" href="#contato">Fale conosco</a>
@@ -401,11 +478,14 @@
           <div class="preview">
             <div class="mini-row">
               <span class="pill">Apps</span>
-              <span class="pill">iOS • Android • Web</span>
+              <span class="pill">iOS • Android</span>
             </div>
 
             <div class="mini-card">
-              <div class="app-icon" aria-hidden="true"></div>
+              <div class="app-icon-wrap" style="width:42px;height:42px;border-radius:14px;">
+                <img class="app-icon-img" src="assets/logo-myparkday2.png" alt="MyParkDay" />
+              </div>
+
               <div>
                 <b>MyParkDay</b>
                 <span>Roteiros inteligentes para parques, com otimização do tempo e melhor experiência.</span>
@@ -413,17 +493,19 @@
             </div>
 
             <div class="mini-card" style="opacity:0.92;">
-              <div class="app-icon" aria-hidden="true" style="filter:saturate(0.85) brightness(0.9);"></div>
+              <div class="app-icon-wrap" style="width:42px;height:42px;border-radius:14px;">
+                <img class="app-icon-img" src="assets/logo-lotonamao.png" alt="MyParkDay" />
+              </div>
               <div>
-                <b>Próximo app</b>
-                <span>Em breve: novo produto em desenvolvimento. Esta área já está pronta para adicionar.</span>
+                <b>LotoNaMao</b>
+                <span>Gerador de jogos e estatísticas para loterias — simples, rápido e inteligente.</span>
               </div>
             </div>
           </div>
 
-          <div style="margin-top:12px; color:var(--muted2); font-size:13px; line-height:1.5;">
+          <!-- <div style="margin-top:12px; color:var(--muted2); font-size:13px; line-height:1.5;">
             Queremos que o site seja direto: mostrar seus apps, explicar valor e converter contato.
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
@@ -444,12 +526,15 @@
           <!-- APP 1 -->
           <article class="card">
             <div class="app-head">
-              <div class="icon" aria-hidden="true"></div>
+              <div class="app-icon-wrap">
+                <img class="app-icon-img" src="assets/logo-myparkday2.png" alt="MyParkDay" />
+              </div>
               <div>
                 <b>MyParkDay</b>
                 <small>Planejamento e roteiros para parques, com foco em otimização do tempo.</small>
               </div>
             </div>
+
 
             <div class="badges">
               <span class="badge ok">Disponível</span>
@@ -466,28 +551,33 @@
           </article>
 
           <!-- APP 2 (placeholder) -->
-          <article class="card">
-            <div class="app-head">
-              <div class="icon" aria-hidden="true" style="filter:saturate(0.8) brightness(0.9);"></div>
-              <div>
-                <b>Em breve</b>
-                <small>Novo aplicativo em desenvolvimento. Este card já está pronto para receber conteúdo.</small>
-              </div>
-            </div>
+  <article class="card">
+        <div class="app-head">
+          <div class="app-icon-wrap">
+            <img class="app-icon-img" src="assets/logo-lotonamao.png" alt="LotoNaMão" />
+          </div>
+          <div> 
+            <b>LotoNaMão</b>
+            <small>Gerador de jogos e estatísticas para loterias — simples, rápido e inteligente.</small>
+          </div>
+        </div>
 
-            <div class="badges">
-              <span class="badge warn">Em breve</span>
-              <span class="badge">Mobile</span>
-              <span class="badge">Web</span>
-            </div>
+        <div class="badges">
+          <span class="badge warn">Em breve</span>
+          <span class="badge">Mobile</span>
+          <span class="badge">Estatísticas</span>
+        </div>
 
-            <div class="card-actions">
-              <a class="btn" href="#contato">Quero saber mais</a>
-            </div>
-          </article>
+        <div class="card-actions">
+          <a class="btn" href="#" onclick="return false;">Site do app</a>
+          <a class="btn" href="#" onclick="return false;">App Store</a>
+          <a class="btn" href="#" onclick="return false;">Google Play</a>
+        </div>
+      </article>
+
 
           <!-- APP 3 (placeholder) -->
-          <article class="card">
+          <!-- <article class="card">
             <div class="app-head">
               <div class="icon" aria-hidden="true" style="filter:saturate(0.75) brightness(0.85);"></div>
               <div>
@@ -505,7 +595,7 @@
             <div class="card-actions">
               <a class="btn" href="#contato">Falar com a equipe</a>
             </div>
-          </article>
+          </article> -->
         </div>
       </div>
     </section>
@@ -551,7 +641,7 @@
             <input id="nome" name="nome" placeholder="Seu nome" required />
 
             <label for="email">E-mail</label>
-            <input id="email" name="email" type="email" placeholder="seuemail@dominio.com" required />
+            <input id="email" name="email" type="email" placeholder="vedigitalhub@gmail.com" required />
 
             <label for="msg">Mensagem</label>
             <textarea id="msg" name="msg" placeholder="Conte rapidamente o que você precisa..." required></textarea>
@@ -576,7 +666,7 @@
                 <span class="dot"></span>
                 <span>
                   <b style="display:block; font-size:14px;">E-mail</b>
-                  <span style="color:var(--muted); font-size:13px;">contato@suaempresa.com</span>
+                  <span style="color:var(--muted); font-size:13px;">contato@vedigitalhub.com</span>
                 </span>
               </a>
 
@@ -644,128 +734,8 @@ ${msg}
 `;
     window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   });
-
-  // ============================================================
-  //                SELETOR DE PALETA (TEMAS)
-  // ============================================================
-
-  // Cada tema define apenas variáveis CSS (tokens). O resto do CSS permanece igual.
-  const THEMES = {
-    "dark-tech": {
-      "--bg": "#0B1020",
-      "--card": "rgba(255,255,255,0.06)",
-      "--card2": "rgba(255,255,255,0.08)",
-      "--text": "rgba(255,255,255,0.92)",
-      "--muted": "rgba(255,255,255,0.72)",
-      "--muted2": "rgba(255,255,255,0.60)",
-      "--line": "rgba(255,255,255,0.12)",
-      "--brand1": "#7C3AED",
-      "--brand2": "#22D3EE",
-      "--ok": "#34D399",
-      "--warn": "#FBBF24",
-    },
-
-    "dark-navy-energy": {
-      "--bg": "#071225",
-      "--card": "rgba(255,255,255,0.06)",
-      "--card2": "rgba(255,255,255,0.09)",
-      "--text": "rgba(242,247,255,0.95)",
-      "--muted": "rgba(181,195,224,0.80)",
-      "--muted2": "rgba(181,195,224,0.66)",
-      "--line": "rgba(255,255,255,0.14)",
-      "--brand1": "#2DD4BF",
-      "--brand2": "#F59E0B",
-      "--ok": "#34D399",
-      "--warn": "#FB7185",
-    },
-
-    "light-minimal": {
-      "--bg": "#F7F9FC",
-      "--card": "rgba(15,23,42,0.04)",
-      "--card2": "rgba(15,23,42,0.06)",
-      "--text": "rgba(15,23,42,0.92)",
-      "--muted": "rgba(71,85,105,0.86)",
-      "--muted2": "rgba(71,85,105,0.74)",
-      "--line": "rgba(15,23,42,0.12)",
-      "--brand1": "#2563EB",
-      "--brand2": "#7C3AED",
-      "--ok": "#16A34A",
-      "--warn": "#D97706",
-    },
-
-    "light-teal": {
-      "--bg": "#F8FAFC",
-      "--card": "rgba(2,6,23,0.04)",
-      "--card2": "rgba(2,6,23,0.06)",
-      "--text": "rgba(11,19,36,0.94)",
-      "--muted": "rgba(81,96,122,0.86)",
-      "--muted2": "rgba(81,96,122,0.72)",
-      "--line": "rgba(2,6,23,0.12)",
-      "--brand1": "#0EA5E9",
-      "--brand2": "#14B8A6",
-      "--ok": "#16A34A",
-      "--warn": "#D97706",
-    },
-
-    "dark-mono": {
-      "--bg": "#0A0F1D",
-      "--card": "rgba(255,255,255,0.05)",
-      "--card2": "rgba(255,255,255,0.07)",
-      "--text": "rgba(238,242,255,0.94)",
-      "--muted": "rgba(163,176,204,0.82)",
-      "--muted2": "rgba(163,176,204,0.66)",
-      "--line": "rgba(255,255,255,0.12)",
-      "--brand1": "#22D3EE",
-      "--brand2": "#22D3EE",
-      "--ok": "#34D399",
-      "--warn": "#FBBF24",
-    },
-
-    "dark-growth": {
-      "--bg": "#08111E",
-      "--card": "rgba(255,255,255,0.05)",
-      "--card2": "rgba(255,255,255,0.08)",
-      "--text": "rgba(236,253,245,0.93)",
-      "--muted": "rgba(167,201,183,0.82)",
-      "--muted2": "rgba(167,201,183,0.64)",
-      "--line": "rgba(255,255,255,0.12)",
-      "--brand1": "#34D399",
-      "--brand2": "#60A5FA",
-      "--ok": "#34D399",
-      "--warn": "#FBBF24",
-    },
-  };
-
-  function applyTheme(themeKey) {
-    const theme = THEMES[themeKey] || THEMES["dark-tech"];
-    const root = document.documentElement;
-
-    for (const [varName, value] of Object.entries(theme)) {
-      root.style.setProperty(varName, value);
-    }
-
-    localStorage.setItem("vdh_theme", themeKey);
-  }
-
-  // Seletor e persistência
-  const themeSelect = document.getElementById("themeSelect");
-  const randomBtn = document.getElementById("randomTheme");
-
-  const saved = localStorage.getItem("vdh_theme") || "dark-tech";
-  if (themeSelect) themeSelect.value = saved;
-  applyTheme(saved);
-
-  themeSelect?.addEventListener("change", (e) => {
-    applyTheme(e.target.value);
-  });
-
-  randomBtn?.addEventListener("click", () => {
-    const keys = Object.keys(THEMES);
-    const pick = keys[Math.floor(Math.random() * keys.length)];
-    themeSelect.value = pick;
-    applyTheme(pick);
-  });
 </script>
+
 
 </body>
 </html>
