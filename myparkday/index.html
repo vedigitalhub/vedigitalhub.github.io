@@ -462,6 +462,45 @@
       .steps{ grid-template-columns: 1fr; }
       .nav-links{ display:none; }
     }
+
+    /* Segurança: elimina qualquer overflow horizontal residual */
+html, body { overflow-x: hidden; }
+
+/* CTAs do topo */
+.nav-cta{
+  display:flex;
+  gap:10px;
+  align-items:center;
+  flex-wrap: wrap;            /* permite quebrar linha */
+  justify-content: flex-end;
+}
+
+  /* Mobile */
+  @media (max-width: 980px){
+    .nav-inner{
+      flex-wrap: wrap;          /* navbar pode virar 2 linhas */
+      gap: 10px;
+    }
+
+    .brand{
+      min-width: 0;             /* remove largura mínima que força overflow */
+      flex: 1 1 auto;
+    }
+
+    .nav-cta{
+      width: 100%;
+      justify-content: flex-start; /* CTAs descem e alinham à esquerda */
+    }
+
+    .nav-cta .btn{
+      flex: 1 1 0;              /* divide o espaço: 50%/50% */
+      justify-content: center;
+      padding: 10px 12px;
+      font-size: 13px;
+      white-space: nowrap;
+    }
+  }
+
   </style>
 </head>
 
@@ -483,10 +522,11 @@
         <a href="#faq">FAQ</a>
       </div>
 
-      <div style="display:flex; gap:10px; align-items:center;">
+      <div class="nav-cta">
         <a class="btn ghost" href="../">← VeDigitalHub</a>
         <a class="btn primary" href="#baixar">Baixar agora</a>
       </div>
+
     </div>
   </div>
 
