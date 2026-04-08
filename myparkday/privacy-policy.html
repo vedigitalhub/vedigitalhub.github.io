@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Termos de Uso e Política de Privacidade do MyParkDay."
+    />
+    <title>MyParkDay | Termos e Privacidade</title>
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <style>
+      :root {
+        --bg: #f5f7fb;
+        --surface: rgba(255, 255, 255, 0.9);
+        --text: #162033;
+        --muted: #5d6a7d;
+        --line: rgba(22, 32, 51, 0.12);
+        --primary: #3f7fe8;
+        --hero-start: #0c2340;
+        --hero-end: #1f3d6c;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #09172c;
+          --surface: rgba(18, 29, 49, 0.88);
+          --text: #eef4ff;
+          --muted: #aab9d3;
+          --line: rgba(238, 244, 255, 0.12);
+          --primary: #77a6ff;
+          --hero-start: #061224;
+          --hero-end: #16345d;
+        }
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family:
+          Inter,
+          ui-sans-serif,
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          sans-serif;
+        background:
+          radial-gradient(circle at top, rgba(63, 127, 232, 0.14), transparent 34%),
+          var(--bg);
+        color: var(--text);
+        line-height: 1.65;
+      }
+
+      .hero {
+        padding: 28px 24px 44px;
+        background: linear-gradient(135deg, var(--hero-start), var(--hero-end));
+        color: #fff;
+      }
+
+      .hero-inner,
+      .content {
+        width: min(920px, 100%);
+        margin: 0 auto;
+      }
+
+      .hero-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        flex-wrap: wrap;
+      }
+
+      .hero-actions {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+      .hero-link {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 10px 14px;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        background: rgba(255, 255, 255, 0.08);
+        color: #fff;
+        text-decoration: none;
+        font-size: 0.95rem;
+        font-weight: 700;
+        transition: background 0.2s ease;
+      }
+
+      .hero-link:hover {
+        background: rgba(255, 255, 255, 0.14);
+      }
+
+      .lang-switch {
+        display: inline-flex;
+        align-items: center;
+        padding: 4px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.14);
+      }
+
+      .lang-switch a {
+        min-width: 48px;
+        text-align: center;
+        padding: 8px 12px;
+        border-radius: 999px;
+        text-decoration: none;
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 0.92rem;
+        font-weight: 800;
+      }
+
+      .lang-switch a.active {
+        background: #fff;
+        color: var(--hero-start);
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 14px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.12);
+        font-size: 14px;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+      }
+
+      h1 {
+        margin: 18px 0 10px;
+        font-size: clamp(2.2rem, 5vw, 3.6rem);
+        line-height: 1.05;
+      }
+
+      .hero p {
+        max-width: 720px;
+        margin: 0;
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 1.05rem;
+      }
+
+      .content {
+        padding: 28px 24px 72px;
+      }
+
+      .panel {
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 28px;
+        padding: 28px;
+        backdrop-filter: blur(12px);
+        box-shadow: 0 18px 60px rgba(7, 20, 44, 0.08);
+      }
+
+      h2,
+      h3 {
+        line-height: 1.2;
+        margin-top: 1.6em;
+      }
+
+      h2 {
+        font-size: 1.75rem;
+      }
+
+      h3 {
+        font-size: 1.15rem;
+      }
+
+      p,
+      li {
+        color: var(--muted);
+      }
+
+      ul {
+        padding-left: 1.25rem;
+      }
+
+      strong {
+        color: var(--text);
+      }
+
+      hr {
+        border: 0;
+        border-top: 1px solid var(--line);
+        margin: 32px 0;
+      }
+
+      .meta {
+        margin-top: 28px;
+        padding-top: 20px;
+        border-top: 1px solid var(--line);
+        font-size: 0.95rem;
+        color: var(--muted);
+      }
+
+      a {
+        color: var(--primary);
+      }
+
+      @media (max-width: 720px) {
+        .hero {
+          padding-top: 24px;
+        }
+
+        .hero-top {
+          align-items: flex-start;
+        }
+
+        .hero-actions {
+          width: 100%;
+          justify-content: space-between;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="hero">
+      <div class="hero-inner">
+        <div class="hero-top">
+          <div class="eyebrow">MyParkDay</div>
+          <div class="hero-actions">
+            <a class="hero-link" href="index.html">Voltar ao site</a>
+            <nav class="lang-switch" aria-label="Language switcher">
+              <a class="active" href="privacy-policy.html">PT</a>
+              <a href="privacy-policy-en.html">EN</a>
+            </nav>
+          </div>
+        </div>
+        <h1>Termos de Uso e Política de Privacidade</h1>
+        <p>
+          Este documento reúne as condições de uso do aplicativo e as diretrizes
+          de tratamento de dados adotadas pela VEDigitalHub.
+        </p>
+      </div>
+    </header>
+
+    <main class="content">
+      <section class="panel">
+        <h2>Termos de Uso do MyParkDay</h2>
+
+        <h3>1. Preâmbulo</h3>
+        <p>
+          Este documento regulamenta o uso do aplicativo MyParkDay, de
+          propriedade da VEDigitalHub CNPJ: 64.360.397/0001-05, e-mail:
+          contato@myparkday.com. A utilização do App implica a aceitação
+          integral e sem reservas destes Termos de Uso.
+        </p>
+
+        <h3>2. Definições</h3>
+        <ul>
+          <li><strong>App</strong>: MyParkDay, aplicativo para planejamento de roteiros em parques de Orlando.</li>
+          <li><strong>Usuário</strong>: pessoa física que realizar cadastro e utilizar o App.</li>
+          <li><strong>Conteúdo</strong>: dados, textos, imagens, avaliações, comentários ou quaisquer informações fornecidas pelo Usuário.</li>
+        </ul>
+
+        <h3>3. Elegibilidade</h3>
+        <p>O App é destinado a maiores de 18 anos ou menores com assistência de responsável legal.</p>
+
+        <h3>4. Cadastro e acesso</h3>
+        <p>O Usuário deverá informar: nome de usuário, e-mail, senha e país de origem.</p>
+
+        <h3>5. Descrição do serviço</h3>
+        <p>
+          MyParkDay auxilia usuários a planejar visitas a parques de diversões
+          em Orlando, filtrando preferências e ordenando roteiros de acordo com:
+          categoria de atração, distância/tempo de deslocamento, ritmo de
+          visita e tempo médio/atual das filas.
+        </p>
+
+        <h3>6. Obrigações</h3>
+        <p>
+          O Usuário compromete-se a não disponibilizar conteúdo ilícito ou
+          ofensivo, compartilhar credenciais ou interferir no funcionamento do
+          App.
+        </p>
+
+        <h3>7. Conteúdo do Usuário</h3>
+        <p>
+          Avaliações, fotos e comentários inseridos podem ser usados pelo App
+          para divulgação e melhoria, sem remuneração.
+        </p>
+
+        <h3>8. Propriedade intelectual</h3>
+        <p>
+          Todo o conteúdo do App pertence à VEDigitalHub e é protegido pela
+          legislação de direitos autorais.
+        </p>
+
+        <h3>9. Modificações</h3>
+        <p>
+          A VEDigitalHub reserva-se o direito de modificar o App e estes Termos,
+          notificando os Usuários por meio do App ou por e-mail.
+        </p>
+
+        <h3>10. Suspensão e encerramento</h3>
+        <p>
+          O App poderá suspender ou encerrar o acesso em caso de violação destes
+          Termos.
+        </p>
+
+        <h3>11. Isenção de responsabilidade</h3>
+        <p>
+          O App não garante precisão absoluta de tempos de fila ou rotas,
+          estando sujeito a variações.
+        </p>
+
+        <h3>12. Foro</h3>
+        <p>Legislação brasileira, foro de Fortaleza (CE).</p>
+
+        <hr />
+
+        <h2>Política de Privacidade do MyParkDay</h2>
+
+        <h3>1. Introdução</h3>
+        <p>
+          A VEDigitalHub, controladora do MyParkDay CNPJ: 64.360.397/0001-05,
+          e-mail: contato@myparkday.com, compromete-se a proteger os dados dos
+          Usuários conforme a LGPD.
+        </p>
+
+        <h3>2. Controladora e DPO</h3>
+        <ul>
+          <li><strong>Controladora</strong>: VEDigitalHub.</li>
+          <li><strong>Encarregado (DPO)</strong>: Valdir, e-mail contato@myparkday.com.</li>
+        </ul>
+
+        <h3>3. Dados coletados</h3>
+        <ul>
+          <li><strong>Cadastro</strong>: nome de usuário, e-mail, senha e país de origem.</li>
+          <li><strong>Uso</strong>: localização em tempo real, histórico de roteiros e tempo de fila.</li>
+          <li><strong>Pagamento</strong>: dados apenas para planos pagos; gratuito não exige.</li>
+        </ul>
+
+        <h3>4. Finalidades e bases</h3>
+        <ul>
+          <li><strong>Execução de contrato</strong>: planejamento de visita.</li>
+          <li><strong>Consentimento</strong>: notificações e marketing (revogável).</li>
+          <li><strong>Legítimo interesse</strong>: estatísticas para melhoria.</li>
+        </ul>
+
+        <h3>5. Compartilhamento</h3>
+        <ul>
+          <li><strong>Firebase (Google Cloud)</strong>, APIs de mapa, e-mail/SMS.</li>
+          <li>Dados armazenados globalmente em data centers Google Cloud.</li>
+        </ul>
+
+        <h3>6. Cookies e SDKs</h3>
+        <p>Uso do Firebase SDK para push notifications e analytics.</p>
+
+        <h3>7. Retenção</h3>
+        <ul>
+          <li><strong>Cadastro</strong>: até 5 anos de inatividade.</li>
+          <li><strong>Logs</strong>: 3 meses.</li>
+          <li><strong>Estatísticas anônimas</strong>: indefinidamente.</li>
+        </ul>
+
+        <h3>8. Segurança</h3>
+        <p>
+          Medidas Google Firebase: criptografia em trânsito/repouso, controle de
+          acesso e monitoramento.
+        </p>
+
+        <h3>9. Direitos dos titulares</h3>
+        <p>
+          Acesso, correção, exclusão, portabilidade e revogação mediante
+          solicitação ao DPO.
+        </p>
+
+        <h3>10. Alterações</h3>
+        <p>
+          Mudanças serão comunicadas no App e/ou por e-mail, com data de
+          atualização.
+        </p>
+
+        <div class="meta"><strong>Data de vigência:</strong> 07/03/2026</div>
+      </section>
+    </main>
+  </body>
+</html>
