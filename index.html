@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="description" content="Empresa de software. Desenvolvimento de aplicativos e soluções digitais." />
-  <title>Sua Empresa | Apps e Soluções</title>
+  <title>VeDigitalHub | Apps e Soluções Digitais</title>
 
   <style>
 :root{
@@ -365,7 +365,6 @@
 
     .brand-accent{
       color: #7C3AED;         /* roxo “padrão” */
-      /* opcional: dá um brilho leve no Hub */
       text-shadow: 0 10px 30px rgba(124,58,237,0.22);
     }
 
@@ -517,7 +516,7 @@
         <div class="section-title">
           <div>
             <h2>Apps desenvolvidos</h2>
-            <p>Adicione novos apps duplicando um card.</p>
+            <p>Produtos digitais criados para resolver problemas reais com tecnologia simples de usar.</p>
           </div>
           <a class="btn" href="#contato">Quero um app</a>
         </div>
@@ -543,14 +542,12 @@
             </div>
 
             <div class="card-actions">
-              <!-- Troque os links abaixo quando tiver -->
               <a class="btn" href="./myparkday/index.html" target="_blank" rel="noopener">Site do app</a>
-              <a class="btn" href="#" onclick="return false;">App Store</a>
-              <a class="btn" href="#" onclick="return false;">Google Play</a>
+              <a class="btn" href="./myparkday/index.html#faq" target="_blank" rel="noopener">Disponibilidade</a>
             </div>
           </article>
 
-          <!-- APP 2 (placeholder) -->
+          <!-- APP 2 -->
   <article class="card">
         <div class="app-head">
           <div class="app-icon-wrap">
@@ -569,14 +566,12 @@
         </div>
 
         <div class="card-actions">
-          <a class="btn" href="#" onclick="return false;">Site do app</a>
-          <a class="btn" href="#" onclick="return false;">App Store</a>
-          <a class="btn" href="#" onclick="return false;">Google Play</a>
+          <a class="btn" href="#contato">Tenho interesse</a>
         </div>
       </article>
 
 
-          <!-- APP 3 (placeholder) -->
+          <!-- APP 3 -->
           <!-- <article class="card">
             <div class="app-head">
               <div class="icon" aria-hidden="true" style="filter:saturate(0.75) brightness(0.85);"></div>
@@ -671,14 +666,6 @@
                 </span>
               </a>
 
-              <!-- <a class="link" id="phoneLink" href="#">
-                <span class="dot"></span>
-                <span>
-                  <b style="display:block; font-size:14px;">WhatsApp</b>
-                  <span style="color:var(--muted); font-size:13px;">(85) 00000-0000</span>
-                </span>
-              </a> -->
-
               <div class="link" style="opacity:0.95;">
                 <span class="dot"></span>
                 <span>
@@ -694,8 +681,8 @@
 
     <footer>
       <div class="wrap" style="display:flex; flex-wrap:wrap; gap:10px; justify-content:space-between; align-items:center;">
-        <span>© <span id="year"></span> Sua Empresa. Todos os direitos reservados.</span>
-        <span style="color:var(--muted);">CNPJ: 64.360.397/0001-05 • Política de Privacidade (opcional)</span>
+        <span>© <span id="year"></span> VeDigitalHub. Todos os direitos reservados.</span>
+        <span style="color:var(--muted);">CNPJ: 64.360.397/0001-05</span>
       </div>
     </footer>
   </main>
@@ -703,38 +690,15 @@
   <script>
   // ====== EDITE AQUI SEUS CONTATOS ======
   const CONTACT_EMAIL = "contato@vedigitalhub.com";
-  const WHATS_NUMBER_E164 = "5585000000000"; // Ex: 5585987654321
-  const WHATS_TEXT = "Olá! Gostaria de falar sobre desenvolvimento de aplicativo/solução digital.";
 
   // ====== LINKS DINÂMICOS ======
   const emailLink = document.getElementById("emailLink");
-  const phoneLink = document.getElementById("phoneLink");
-  const whatsLink = document.getElementById("whatsLink");
   const yearEl = document.getElementById("year");
   yearEl.textContent = new Date().getFullYear();
 
-  const whatsUrl = `https://wa.me/${WHATS_NUMBER_E164}?text=${encodeURIComponent(WHATS_TEXT)}`;
-  whatsLink.href = whatsUrl;
-  phoneLink.href = whatsUrl;
-  emailLink.href = `mailto:${CONTACT_EMAIL}`;
-
-  // ====== FORMULÁRIO (mailto) ======
-  document.getElementById("contactForm").addEventListener("submit", (e) => {
-    e.preventDefault();
-    const nome = document.getElementById("nome").value.trim();
-    const email = document.getElementById("email").value.trim();
-    const msg = document.getElementById("msg").value.trim();
-
-    const subject = `Contato pelo site - ${nome}`;
-    const body =
-`Nome: ${nome}
-E-mail: ${email}
-
-Mensagem:
-${msg}
-`;
-    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-  });
+  if (emailLink) {
+    emailLink.href = `mailto:${CONTACT_EMAIL}`;
+  }
 </script>
 
 
