@@ -253,6 +253,23 @@
 
     .card-actions{ display:flex; gap:10px; flex-wrap:wrap; }
     .card-actions .btn{ padding:10px 12px; border-radius: 12px; }
+    .store-badges{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+    .store-badge{
+      display:inline-flex;
+      border-radius:12px;
+      transition: transform .15s ease, filter .15s ease;
+    }
+    .store-badge:hover{ transform: translateY(-1px); filter: brightness(1.08); }
+    .store-badge img{
+      display:block;
+      height:42px;
+      width:auto;
+    }
 
     .features{
       display:grid;
@@ -544,8 +561,14 @@
 
             <div class="card-actions">
               <a class="btn" href="./myparkday/index.html" target="_blank" rel="noopener">Site do app</a>
-              <a class="btn" href="https://apps.apple.com/br/app/myparkday/id6762487908" target="_blank" rel="noopener">App Store</a>
-              <a class="btn" href="https://play.google.com/store/apps/details?id=com.vedigitalhub.myparkday&amp;pcampaignid=web_share" target="_blank" rel="noopener">Google Play</a>
+              <div class="store-badges" aria-label="Baixar MyParkDay">
+                <a class="store-badge" href="https://apps.apple.com/br/app/myparkday/id6762487908" target="_blank" rel="noopener" aria-label="Baixar na App Store">
+                  <img src="assets/badge-app-store.svg" alt="Download on the App Store" />
+                </a>
+                <a class="store-badge" href="https://play.google.com/store/apps/details?id=com.vedigitalhub.myparkday&amp;pcampaignid=web_share" target="_blank" rel="noopener" aria-label="Baixar no Google Play">
+                  <img src="assets/badge-google-play.svg" alt="Get it on Google Play" />
+                </a>
+              </div>
             </div>
           </article>
 
