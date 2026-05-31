@@ -467,7 +467,7 @@ html, body { overflow-x: hidden; }
       <div class="nav-cta">
         <a class="btn ghost" href="../">← VeDigitalHub</a>
         <a class="btn" href="https://myparkday-3379a.web.app" target="_blank" rel="noopener">Área administrativa</a>
-        <a class="btn primary" href="#baixar">Baixar agora</a>
+        <a class="btn primary" id="smartDownload" href="#baixar">Baixar agora</a>
       </div>
 
     </div>
@@ -709,6 +709,25 @@ html, body { overflow-x: hidden; }
 
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    (function(){
+      const downloadButton = document.getElementById("smartDownload");
+      if(!downloadButton) return;
+
+      const APP_STORE_URL = "https://apps.apple.com/br/app/myparkday/id6762487908";
+      const GOOGLE_PLAY_URL = "https://play.google.com/store/apps/details?id=com.vedigitalhub.myparkday&pcampaignid=web_share";
+      const userAgent = navigator.userAgent || "";
+      const platform = navigator.platform || "";
+      const isAndroid = /android/i.test(userAgent);
+      const isIOS = /iPad|iPhone|iPod/i.test(userAgent) ||
+        (platform === "MacIntel" && navigator.maxTouchPoints > 1);
+
+      if(isAndroid){
+        downloadButton.href = GOOGLE_PLAY_URL;
+      }else if(isIOS){
+        downloadButton.href = APP_STORE_URL;
+      }
+    })();
   </script>
   <script>
 (function(){
