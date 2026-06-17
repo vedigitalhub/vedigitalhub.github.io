@@ -1,0 +1,746 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Preço Real • Escaneie, compare e economize nas compras</title>
+  <meta name="description" content="Escaneie o QR Code do cupom fiscal, compare preços de supermercados perto de você e descubra onde sua lista de compras sai mais barata."/>
+  <meta name="theme-color" content="#16A34A"/>
+  <meta property="og:title" content="Preço Real • Economize de verdade nas compras"/>
+  <meta property="og:description" content="Escaneie cupons, compare preços e organize suas compras com inteligência."/>
+  <meta property="og:type" content="website"/>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+
+  <style>
+:root {
+  --green:   #16A34A;
+  --green2:  #22C55E;
+  --green3:  #DCFCE7;
+  --blue:    #1D4ED8;
+  --blue2:   #DBEAFE;
+  --orange:  #F59E0B;
+  --bg:      #FAFFF5;
+  --bg2:     #FFFFFF;
+  --text:    #0C1A0E;
+  --muted:   #4B5563;
+  --muted2:  #9CA3AF;
+  --line:    #E5E7EB;
+  --line2:   #D1FAE5;
+  --max:     1140px;
+  --font-d:  'Outfit', system-ui, sans-serif;
+  --font:    'Manrope', system-ui, sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0; padding: 0;
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  overflow-x: hidden;
+}
+a { color: inherit; text-decoration: none; }
+.wrap { width: min(var(--max), calc(100% - 40px)); margin: 0 auto; }
+
+/* ── NAV ── */
+.nav {
+  position: sticky; top: 0; z-index: 100;
+  backdrop-filter: blur(20px) saturate(1.4);
+  background: rgba(250,255,245,0.9);
+  border-bottom: 1px solid var(--line2);
+}
+.nav-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 13px 0; gap: 16px;
+}
+.brand { display: flex; align-items: center; gap: 10px; }
+.brand-logo {
+  height: 36px; width: auto;
+  border-radius: 8px;
+}
+.brand-logo-fallback {
+  width: 36px; height: 36px; border-radius: 9px;
+  background: var(--green);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; flex-shrink: 0;
+}
+.brand-name {
+  font-family: var(--font-d);
+  font-size: 18px; font-weight: 900;
+  letter-spacing: -0.5px; line-height: 1;
+}
+.brand-name .green { color: var(--green); }
+.brand-name .blue  { color: var(--blue); }
+.brand-sub { font-size: 11px; color: var(--muted2); margin-top: 2px; font-family: var(--font); }
+
+.nav-links { display: flex; gap: 4px; }
+.nav-links a {
+  font-size: 13px; color: var(--muted); font-weight: 500;
+  padding: 7px 13px; border-radius: 8px;
+  transition: color .15s, background .15s;
+}
+.nav-links a:hover { background: var(--green3); color: var(--green); }
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 11px 22px; border-radius: 12px;
+  font-family: var(--font); font-size: 14px; font-weight: 700;
+  cursor: pointer; white-space: nowrap; border: none;
+  transition: transform .15s, box-shadow .15s;
+}
+.btn:hover { transform: translateY(-1px); }
+.btn-green {
+  background: var(--green); color: #fff;
+  box-shadow: 0 4px 16px rgba(22,163,74,0.28);
+}
+.btn-green:hover { background: #15803D; box-shadow: 0 8px 24px rgba(22,163,74,0.38); }
+.btn-outline {
+  background: #fff; color: var(--text);
+  border: 1.5px solid var(--line) !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+.btn-outline:hover { border-color: var(--green) !important; color: var(--green); }
+
+/* ── HERO ── */
+.hero {
+  padding: 0 0 0;
+  background: #0C1A0E;
+  position: relative;
+  overflow: hidden;
+}
+.hero-img-bg {
+  position: absolute; inset: 0;
+  object-fit: cover; width: 100%; height: 100%;
+  opacity: 0.45;
+  filter: blur(2px) saturate(0.8);
+}
+.hero-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(12,26,14,0.55) 0%,
+    rgba(12,26,14,0.2) 40%,
+    rgba(12,26,14,0.8) 100%
+  );
+}
+.hero-inner {
+  position: relative; z-index: 2;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  min-height: 640px;
+  align-items: center;
+}
+.hero-text {
+  padding: 80px 48px 80px 0;
+}
+.hero-kicker {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 6px 14px; border-radius: 999px;
+  background: rgba(34,197,94,0.18);
+  border: 1px solid rgba(34,197,94,0.35);
+  font-size: 12px; font-weight: 700;
+  color: var(--green2); margin-bottom: 22px;
+  letter-spacing: 0.3px;
+}
+.kicker-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--green2); animation: pulse 2s ease infinite;
+}
+.hero h1 {
+  font-family: var(--font-d);
+  font-size: clamp(36px, 4.2vw, 60px);
+  font-weight: 900; letter-spacing: -2px;
+  line-height: 1.02; color: #fff;
+  margin: 0 0 20px;
+}
+.hero h1 .green { color: var(--green2); }
+.hero h1 .blue  { color: #93C5FD; }
+.hero-desc {
+  font-size: clamp(15px, 1.5vw, 17px);
+  color: rgba(255,255,255,0.75);
+  line-height: 1.7; max-width: 44ch;
+  margin: 0 0 32px;
+}
+.hero-desc b { color: #fff; font-weight: 600; }
+.hero-ctas { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+.store-badge {
+  display: inline-flex; border-radius: 10px;
+  transition: transform .15s, opacity .15s;
+  opacity: 0.9;
+}
+.store-badge:hover { transform: translateY(-1px); opacity: 1; }
+.store-badge img { display: block; height: 44px; width: auto; }
+
+.hero-image-col {
+  display: flex; align-items: flex-end; justify-content: center;
+  padding-top: 40px;
+}
+.hero-screen-img {
+  width: 100%;
+  max-width: 480px;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 40px 60px rgba(0,0,0,0.5));
+}
+
+/* hero stats bar */
+.hero-stats-bar {
+  position: relative; z-index: 2;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  background: rgba(12,26,14,0.7);
+  backdrop-filter: blur(10px);
+}
+.hero-stats-inner {
+  display: flex; gap: 0;
+  padding: 20px 0;
+}
+.hstat {
+  padding: 0 32px 0 0; margin-right: 32px;
+  border-right: 1px solid rgba(255,255,255,0.1);
+}
+.hstat:last-child { border: none; margin: 0; padding: 0; }
+.hstat-n {
+  font-family: var(--font-d);
+  font-size: 22px; font-weight: 900;
+  color: var(--green2); letter-spacing: -0.8px;
+  line-height: 1; margin-bottom: 3px;
+}
+.hstat-l { font-size: 11px; color: rgba(255,255,255,0.45); font-weight: 500; }
+
+/* ── TICKER ── */
+.ticker {
+  overflow: hidden; padding: 11px 0;
+  background: var(--green3);
+  border-top: 1px solid rgba(22,163,74,0.15);
+  border-bottom: 1px solid rgba(22,163,74,0.15);
+}
+.ticker-track {
+  display: flex; width: max-content;
+  animation: scroll-x 26s linear infinite;
+}
+.ticker-item {
+  display: flex; align-items: center; gap: 12px;
+  padding: 0 20px;
+  font-family: var(--font-d); font-size: 12px; font-weight: 700;
+  color: var(--green); letter-spacing: 0.5px; white-space: nowrap;
+}
+.ticker-sep {
+  width: 5px; height: 5px; border-radius: 50%;
+  background: var(--green); opacity: 0.4; flex-shrink: 0;
+}
+@keyframes scroll-x {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ── CAROUSEL ── */
+.carousel-section {
+  padding: 72px 0 80px;
+  background: #0C1A0E;
+  overflow: hidden;
+  position: relative;
+}
+.carousel-section::before {
+  content: "";
+  position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+  background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(22,163,74,0.08), transparent 70%);
+  pointer-events: none;
+}
+.carousel-header {
+  text-align: center; margin-bottom: 52px; position: relative; z-index: 2;
+}
+.carousel-tag {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family: var(--font-d); font-size: 11px; font-weight: 700;
+  color: var(--green2); letter-spacing: 1.4px; text-transform: uppercase;
+  margin-bottom: 14px;
+}
+.carousel-tag::before, .carousel-tag::after {
+  content: ""; width: 24px; height: 1px; background: var(--green2); opacity: 0.6;
+}
+.carousel-title {
+  font-family: var(--font-d);
+  font-size: clamp(24px, 3vw, 38px);
+  font-weight: 900; letter-spacing: -1.2px;
+  color: #fff; margin: 0;
+}
+
+/* viewport — overflow visible so adjacent slides show */
+.carousel-viewport {
+  position: relative; z-index: 2;
+  overflow: visible;
+}
+.carousel-track {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  will-change: transform;
+  transition: transform .55s cubic-bezier(.25,.46,.45,.94);
+  cursor: grab;
+  user-select: none;
+}
+.carousel-track.dragging {
+  transition: none;
+  cursor: grabbing;
+}
+
+.carousel-slide {
+  flex-shrink: 0;
+  width: 290px;
+  border-radius: 20px;
+  overflow: hidden;
+  transform: scale(0.82);
+  opacity: 0.45;
+  filter: brightness(0.65);
+  transition: transform .55s ease, opacity .55s ease, filter .55s ease, box-shadow .55s ease;
+  cursor: pointer;
+}
+.carousel-slide.active {
+  transform: scale(1);
+  opacity: 1;
+  filter: brightness(1);
+  box-shadow:
+    0 0 0 1px rgba(34,197,94,0.2),
+    0 40px 100px rgba(0,0,0,0.55),
+    0 0 60px rgba(22,163,74,0.15);
+  cursor: default;
+}
+.carousel-slide img {
+  width: 100%; height: auto; display: block;
+  pointer-events: none;
+}
+
+/* glow behind active slide */
+.carousel-glow {
+  position: absolute;
+  width: 290px; height: 290px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(22,163,74,0.2), transparent 70%);
+  top: 50%; left: 50%;
+  transform: translate(-50%, -30%);
+  pointer-events: none; z-index: 0;
+  transition: opacity .55s ease;
+}
+
+/* arrows */
+.carousel-arrow {
+  position: absolute; top: 50%; z-index: 10;
+  width: 44px; height: 44px; border-radius: 50%;
+  border: 1.5px solid rgba(255,255,255,0.2);
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(10px);
+  color: #fff; font-size: 20px; font-weight: 300;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; transform: translateY(-50%);
+  transition: background .15s, border-color .15s, transform .15s;
+  user-select: none;
+}
+.carousel-arrow:hover {
+  background: rgba(22,163,74,0.25);
+  border-color: rgba(22,163,74,0.5);
+  transform: translateY(-50%) scale(1.08);
+}
+.carousel-arrow.prev { left: 16px; }
+.carousel-arrow.next { right: 16px; }
+.carousel-arrow:disabled { opacity: 0.25; pointer-events: none; }
+
+/* dots */
+.carousel-dots {
+  display: flex; justify-content: center; gap: 8px;
+  margin-top: 36px; position: relative; z-index: 2;
+}
+.carousel-dot {
+  width: 7px; height: 7px; border-radius: 99px;
+  background: rgba(255,255,255,0.25);
+  transition: width .3s ease, background .3s ease;
+  cursor: pointer;
+}
+.carousel-dot.active {
+  width: 24px;
+  background: var(--green2);
+}
+
+/* ── CTA SECTION ── */
+.cta-section {
+  background: linear-gradient(135deg, #0C1A0E 0%, #14532D 60%, #15803D 100%);
+  padding: 88px 0;
+  text-align: center; position: relative; overflow: hidden;
+}
+.cta-section::before {
+  content: "";
+  position: absolute; top: -100px; right: -100px;
+  width: 400px; height: 400px; border-radius: 50%;
+  background: rgba(34,197,94,0.08); pointer-events: none;
+}
+.cta-section::after {
+  content: "";
+  position: absolute; bottom: -80px; left: -80px;
+  width: 320px; height: 320px; border-radius: 50%;
+  background: rgba(29,78,216,0.07); pointer-events: none;
+}
+.cta-logo {
+  height: 64px; width: auto;
+  margin: 0 auto 24px;
+  display: block;
+  filter: drop-shadow(0 8px 20px rgba(0,0,0,0.3));
+}
+.cta-section h2 {
+  font-family: var(--font-d);
+  font-size: clamp(30px, 4vw, 48px);
+  font-weight: 900; letter-spacing: -1.5px;
+  color: #fff; margin: 0 0 14px;
+}
+.cta-section p { color: rgba(255,255,255,0.7); font-size: 18px; margin: 0 0 36px; }
+.cta-badges { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
+.cta-badges .store-badge img { height: 52px; }
+.cta-free {
+  font-size: 13px; color: rgba(255,255,255,0.45);
+  margin-top: 18px; font-weight: 500;
+}
+
+/* ── FOOTER ── */
+footer {
+  background: #0C1A0E;
+  padding: 36px 0 44px;
+}
+.footer-inner {
+  display: flex; flex-wrap: wrap; gap: 20px;
+  justify-content: space-between; align-items: center;
+}
+.footer-brand { display: flex; align-items: center; gap: 10px; }
+.footer-brand-logo { height: 28px; width: auto; }
+.footer-brand-fallback {
+  font-family: var(--font-d);
+  font-size: 15px; font-weight: 900; color: #fff;
+}
+.footer-brand-fallback .green { color: var(--green2); }
+.footer-brand-fallback .blue  { color: #93C5FD; }
+.footer-sub { font-size: 11px; color: rgba(255,255,255,0.3); margin-top: 3px; }
+.footer-copy { font-size: 12px; color: rgba(255,255,255,0.35); }
+.footer-links { display: flex; gap: 16px; }
+.footer-links a { font-size: 12px; color: rgba(255,255,255,0.45); transition: color .15s; }
+.footer-links a:hover { color: var(--green2); }
+
+/* ── ANIMATIONS ── */
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.5; transform: scale(0.75); }
+}
+.reveal {
+  opacity: 0; transform: translateY(24px);
+  transition: opacity .6s ease, transform .6s ease;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  .hero-inner { grid-template-columns: 1fr; min-height: auto; }
+  .hero-text { padding: 56px 0 32px; }
+  .hero-image-col { padding: 0 0 40px; }
+  .hero-screen-img { max-width: 380px; }
+  .hero-stats-inner { flex-wrap: wrap; gap: 20px; }
+  .hstat { border: none; padding: 0; margin: 0; }
+  .nav-links { display: none; }
+  .cta-section { padding: 64px 0; }
+  .carousel-slide { width: 240px; }
+}
+@media (max-width: 600px) {
+  .hero-ctas { flex-direction: column; align-items: flex-start; }
+  .cta-badges { flex-direction: column; align-items: center; }
+  .carousel-slide { width: 200px; }
+  .carousel-arrow { display: none; }
+}
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <div class="nav">
+    <div class="wrap nav-inner">
+      <div class="brand">
+        <img class="brand-logo" src="assets/logo_preco_real_sem_fundo.png" alt="Preço Real"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+        <div class="brand-logo-fallback" style="display:none;">🏷️</div>
+        <div>
+          <div class="brand-name"><span class="green">Preço</span><span class="blue">Real</span></div>
+          <div class="brand-sub">Economize de verdade</div>
+        </div>
+      </div>
+
+      <nav class="nav-links" aria-label="Navegação">
+        <a href="#features">Funcionalidades</a>
+        <a href="#baixar">Baixar</a>
+      </nav>
+
+      <a class="btn btn-green" href="#baixar">Baixar grátis</a>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <header class="hero">
+    <img class="hero-img-bg" src="assets/fundo-mercado.png" alt="" aria-hidden="true"/>
+    <div class="hero-overlay"></div>
+
+    <div class="wrap hero-inner">
+      <div class="hero-text">
+        <div class="hero-kicker">
+          <span class="kicker-dot"></span>
+          Novo — disponível agora
+        </div>
+
+        <h1>
+          Todo cupom<br>
+          vira <span class="green">economia</span><br>
+          de <span class="blue">verdade</span>
+        </h1>
+
+        <p class="hero-desc">
+          Escaneie o QR Code do cupom fiscal, registre seus gastos e descubra
+          <b>onde cada produto está mais barato</b> perto de você.
+        </p>
+
+        <div class="hero-ctas">
+          <a class="store-badge" href="#baixar" aria-label="Baixar na App Store">
+            <img src="../assets/badge-app-store.svg" alt="Download on the App Store"/>
+          </a>
+          <a class="store-badge" href="#baixar" aria-label="Baixar no Google Play">
+            <img src="../assets/badge-google-play.svg" alt="Get it on Google Play"/>
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-image-col">
+        <img class="hero-screen-img" src="assets/screen-1-sem-fundo.png" alt="Preço Real — escaneie cupom fiscal"/>
+      </div>
+    </div>
+
+    <div class="hero-stats-bar">
+      <div class="wrap hero-stats-inner">
+        <div class="hstat">
+          <div class="hstat-n">QR</div>
+          <div class="hstat-l">Scan de cupom fiscal</div>
+        </div>
+        <div class="hstat">
+          <div class="hstat-n">100%</div>
+          <div class="hstat-l">Gratuito</div>
+        </div>
+        <div class="hstat">
+          <div class="hstat-n">NFC-e</div>
+          <div class="hstat-l">Nota eletrônica oficial</div>
+        </div>
+        <div class="hstat">
+          <div class="hstat-n">iOS &amp; And.</div>
+          <div class="hstat-l">Disponível nas lojas</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- TICKER -->
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-track">
+      <span class="ticker-item"><span class="ticker-sep"></span>Escaneie cupons fiscais</span>
+      <span class="ticker-item"><span class="ticker-sep"></span>Compare preços por loja</span>
+      <span class="ticker-item"><span class="ticker-sep"></span>Crie listas inteligentes</span>
+      <span class="ticker-item"><span class="ticker-sep"></span>Acompanhe seus gastos</span>
+      <span class="ticker-item"><span class="ticker-sep"></span>Histórico de compras</span>
+      <span class="ticker-item"><span class="ticker-sep"></span>Alertas de queda de preço</span>
+      <span class="ticker-item"><span class="ticker-sep"></span>Economize de verdade</span>
+      <span class="ticker-item"><span class="ticker-sep"></span>Escaneie cupons fiscais</span>
+      <span class="ticker-item"><span class="ticker-sep"></span>Compare preços por loja</span>
+      <span class="ticker-item"><span class="ticker-sep"></span>Crie listas inteligentes</span>
+      <span class="ticker-item"><span class="ticker-sep"></span>Acompanhe seus gastos</span>
+      <span class="ticker-item"><span class="ticker-sep"></span>Histórico de compras</span>
+      <span class="ticker-item"><span class="ticker-sep"></span>Alertas de queda de preço</span>
+      <span class="ticker-item"><span class="ticker-sep"></span>Economize de verdade</span>
+    </div>
+  </div>
+
+  <main>
+
+    <!-- CAROUSEL -->
+    <section class="carousel-section" id="features">
+      <div class="carousel-header reveal">
+        <div class="carousel-tag">Funcionalidades</div>
+        <h2 class="carousel-title">Tudo que você precisa para economizar de verdade</h2>
+      </div>
+
+      <div class="carousel-viewport" id="carouselViewport">
+        <div class="carousel-glow" id="carouselGlow"></div>
+        <div class="carousel-track" id="carouselTrack">
+          <div class="carousel-slide" data-index="0">
+            <img src="assets/screen-2.png" alt="Descubra onde sua lista sai mais barata" draggable="false"/>
+          </div>
+          <div class="carousel-slide" data-index="1">
+            <img src="assets/screen-3.png" alt="Crie listas para comprar melhor" draggable="false"/>
+          </div>
+          <div class="carousel-slide" data-index="2">
+            <img src="assets/screen-4.png" alt="Entenda para onde seu dinheiro vai" draggable="false"/>
+          </div>
+          <div class="carousel-slide" data-index="3">
+            <img src="assets/screen-5.png" alt="Cada compra vira histórico inteligente" draggable="false"/>
+          </div>
+          <div class="carousel-slide" data-index="4">
+            <img src="assets/screen-6.png" alt="Compare preços reais perto de você" draggable="false"/>
+          </div>
+        </div>
+
+        <button class="carousel-arrow prev" id="prevBtn" aria-label="Anterior">&#8249;</button>
+        <button class="carousel-arrow next" id="nextBtn" aria-label="Próximo">&#8250;</button>
+      </div>
+
+      <div class="carousel-dots" id="carouselDots"></div>
+    </section>
+
+    <!-- DOWNLOAD CTA -->
+    <section id="baixar" class="cta-section">
+      <div class="wrap">
+        <img class="cta-logo" src="assets/logo_preco_real_sem_fundo.png" alt="Preço Real"
+             onerror="this.style.display='none'"/>
+        <h2>Baixe grátis agora</h2>
+        <p>Disponível para iPhone e Android.<br>Sem mensalidade, sem pegadinha.</p>
+        <div class="cta-badges">
+          <a class="store-badge" href="#" aria-label="Baixar na App Store">
+            <img src="../assets/badge-app-store.svg" alt="Download on the App Store"/>
+          </a>
+          <a class="store-badge" href="#" aria-label="Baixar no Google Play">
+            <img src="../assets/badge-google-play.svg" alt="Get it on Google Play"/>
+          </a>
+        </div>
+        <p class="cta-free">Gratuito · iOS &amp; Android · Sem anúncios invasivos</p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="wrap footer-inner">
+      <div class="footer-brand">
+        <img class="footer-brand-logo" src="assets/logo_preco_real_sem_fundo.png" alt="Preço Real"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='block'"/>
+        <div class="footer-brand-fallback" style="display:none">
+          <span class="green">Preço</span><span class="blue">Real</span>
+        </div>
+        <div class="footer-sub">by VeDigitalHub</div>
+      </div>
+
+      <div class="footer-links">
+        <a href="https://vedigitalhub.github.io">VeDigitalHub</a>
+        <a href="mailto:contato@vedigitalhub.com">Contato</a>
+        <a href="#">Privacidade</a>
+      </div>
+
+      <span class="footer-copy">© <span id="year"></span> VeDigitalHub. Todos os direitos reservados.</span>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add("visible"); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.08 });
+    document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+
+    // ── CAROUSEL ──
+    (function() {
+      const track     = document.getElementById("carouselTrack");
+      const viewport  = document.getElementById("carouselViewport");
+      const dotsEl    = document.getElementById("carouselDots");
+      const prevBtn   = document.getElementById("prevBtn");
+      const nextBtn   = document.getElementById("nextBtn");
+      const slides    = [...track.querySelectorAll(".carousel-slide")];
+      const GAP       = 20;
+      let current     = 0;
+      let startX      = 0;
+      let dragDelta   = 0;
+      let isDragging  = false;
+
+      // build dots
+      slides.forEach((_, i) => {
+        const d = document.createElement("span");
+        d.className = "carousel-dot" + (i === 0 ? " active" : "");
+        d.addEventListener("click", () => goTo(i));
+        dotsEl.appendChild(d);
+      });
+      const dots = [...dotsEl.querySelectorAll(".carousel-dot")];
+
+      function slideW() { return slides[0].offsetWidth; }
+      function viewW()  { return viewport.offsetWidth; }
+
+      function offset(idx) {
+        return (viewW() / 2) - (slideW() / 2) - idx * (slideW() + GAP);
+      }
+
+      function render(animate = true) {
+        if (!animate) track.style.transition = "none";
+        track.style.transform = `translateX(${offset(current)}px)`;
+        if (!animate) requestAnimationFrame(() => track.style.transition = "");
+
+        slides.forEach((s, i) => s.classList.toggle("active", i === current));
+        dots.forEach((d, i)   => d.classList.toggle("active",  i === current));
+        prevBtn.disabled = current === 0;
+        nextBtn.disabled = current === slides.length - 1;
+      }
+
+      function goTo(i) {
+        current = Math.max(0, Math.min(i, slides.length - 1));
+        render();
+      }
+
+      prevBtn.addEventListener("click", () => goTo(current - 1));
+      nextBtn.addEventListener("click", () => goTo(current + 1));
+
+      // click on non-active slide to navigate
+      slides.forEach((s, i) => {
+        s.addEventListener("click", () => { if (i !== current) goTo(i); });
+      });
+
+      // drag / swipe
+      function onDragStart(x) { startX = x; isDragging = true; track.classList.add("dragging"); }
+      function onDragMove(x)  { if (!isDragging) return; dragDelta = x - startX; }
+      function onDragEnd() {
+        if (!isDragging) return;
+        isDragging = false;
+        track.classList.remove("dragging");
+        if (dragDelta < -60) goTo(current + 1);
+        else if (dragDelta > 60) goTo(current - 1);
+        else render();
+        dragDelta = 0;
+      }
+
+      track.addEventListener("mousedown",  e => onDragStart(e.clientX));
+      window.addEventListener("mousemove", e => onDragMove(e.clientX));
+      window.addEventListener("mouseup",   onDragEnd);
+      track.addEventListener("touchstart", e => onDragStart(e.touches[0].clientX), { passive: true });
+      track.addEventListener("touchmove",  e => onDragMove(e.touches[0].clientX),  { passive: true });
+      track.addEventListener("touchend",   onDragEnd);
+
+      // keyboard
+      document.addEventListener("keydown", e => {
+        if (e.key === "ArrowLeft")  goTo(current - 1);
+        if (e.key === "ArrowRight") goTo(current + 1);
+      });
+
+      // auto-advance
+      let autoTimer = setInterval(() => goTo(current < slides.length - 1 ? current + 1 : 0), 4500);
+      viewport.addEventListener("mouseenter", () => clearInterval(autoTimer));
+      viewport.addEventListener("mouseleave", () => {
+        autoTimer = setInterval(() => goTo(current < slides.length - 1 ? current + 1 : 0), 4500);
+      });
+
+      window.addEventListener("resize", () => render(false));
+      render(false);
+    })();
+  </script>
+</body>
+</html>

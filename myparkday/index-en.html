@@ -6,692 +6,731 @@
   <title>MyParkDay • Smart Theme Park Itineraries</title>
   <meta name="description" content="MyParkDay helps you plan smarter theme park days with optimized itineraries, time savings, weather insights, and crowd estimates."/>
   <meta name="theme-color" content="#0EA5E9"/>
-
-  <!-- Open Graph -->
   <meta property="og:title" content="MyParkDay • Smart Theme Park Itineraries"/>
   <meta property="og:description" content="Plan your park day with more strategy and less waiting."/>
   <meta property="og:type" content="website"/>
   <link rel="alternate" hreflang="pt-BR" href="https://www.vedigitalhub.com/myparkday/index.html"/>
   <link rel="alternate" hreflang="en" href="https://www.vedigitalhub.com/myparkday/index-en.html"/>
 
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+
   <style>
-    :root{
-      /* Paleta clara (exclusiva do MyParkDay) */
-      --bg: #F7FAFF;
-      --surface: #FFFFFF;
-      --surface2: #F2F6FF;
-      --text: #0F172A;
-      --muted: #475569;
-      --line: #E2E8F0;
-
-      --brand: #0EA5E9;      /* azul */
-      --brand2: #10B981;     /* verde */
-      --accent: #F59E0B;     /* âmbar */
-      --danger: #EF4444;
-
-      --shadow: 0 14px 40px rgba(2,6,23,0.10);
-      --radius: 18px;
-      --radius2: 24px;
-
-      --max: 1120px;
-      --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
-    }
-
-    *{ box-sizing: border-box; }
-    html,body{ margin:0; padding:0; font-family: var(--font); background: var(--bg); color: var(--text); }
-
-    .wrap{ width:min(var(--max), calc(100% - 40px)); margin:0 auto; }
-    a{ color: inherit; text-decoration: none; }
-    .muted{ color: var(--muted); }
-
-    /* NAV */
-    .nav{
-      position: sticky; top: 0; z-index: 20;
-      backdrop-filter: blur(10px);
-      background: rgba(247,250,255,0.70);
-      border-bottom: 1px solid rgba(226,232,240,0.9);
-    }
-    .nav-inner{
-      display:flex; align-items:center; justify-content:space-between;
-      padding: 14px 0;
-      gap: 14px;
-    }
-    .brand{
-      display:flex; align-items:center; gap: 12px;
-      min-width: 240px;
-    }
-    .brand-logo{
-      width: 90px; height: 90px;
-      border-radius: 14px;
-      background: white;
-      border: 1px solid var(--line);
-      padding: 6px;
-      box-shadow: 0 10px 30px rgba(2,6,23,0.08);
-      object-fit: contain;
-    }
-    .brand-title{ font-weight: 900; letter-spacing: -0.3px; line-height: 1.05; }
-    .brand-sub{ font-size: 12.5px; color: var(--muted); }
-
-    .nav-links{ display:flex; gap: 18px; align-items:center; }
-    .nav-links a{ font-size: 14px; color: var(--muted); }
-    .nav-links a:hover{ color: var(--text); }
-
-    .btn{
-      display:inline-flex; align-items:center; justify-content:center;
-      padding: 11px 14px;
-      border-radius: 999px;
-      border: 1px solid var(--line);
-      background: white;
-      color: var(--text);
-      font-weight: 700;
-      font-size: 14px;
-      box-shadow: 0 10px 26px rgba(2,6,23,0.07);
-      cursor: pointer;
-      transition: transform .12s ease, box-shadow .12s ease;
-      white-space: nowrap;
-    }
-    .btn:hover{ transform: translateY(-1px); box-shadow: 0 14px 30px rgba(2,6,23,0.10); }
-    .btn.primary{
-      border: 0;
-      color: white;
-      background: linear-gradient(90deg, var(--brand), var(--brand2));
-    }
-    .btn.ghost{
-      background: transparent;
-      box-shadow: none;
-    }
-
-    /* HERO */
-    .hero{
-      padding: 40px 0 26px;
-      background:
-        radial-gradient(800px 400px at 70% 0%, rgba(14,165,233,0.18), transparent 65%),
-        radial-gradient(700px 380px at 0% 15%, rgba(16,185,129,0.16), transparent 60%);
-    }
-    .hero-grid{
-      display:grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 24px;
-      align-items: center;
-    }
-    .kicker{
-      display:inline-flex; gap: 8px; align-items:center;
-      padding: 7px 10px;
-      background: rgba(14,165,233,0.10);
-      border: 1px solid rgba(14,165,233,0.20);
-      border-radius: 999px;
-      font-size: 12.5px;
-      color: #0B3B5A;
-      font-weight: 700;
-      width: fit-content;
-    }
-    h1{
-      margin: 14px 0 10px;
-      font-size: clamp(28px, 4vw, 44px);
-      letter-spacing: -1px;
-      line-height: 1.06;
-    }
-    .hero p{ margin: 0 0 18px; color: var(--muted); font-size: 15.5px; line-height: 1.55; }
-    .cta-row{ display:flex; gap: 10px; flex-wrap: wrap; align-items:center; }
-    .store-badges{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      align-items:center;
-    }
-    .store-badge{
-      display:inline-flex;
-      border-radius:12px;
-      transition: transform .12s ease, filter .12s ease;
-    }
-    .store-badge:hover{ transform: translateY(-1px); filter: brightness(1.05); }
-    .store-badge img{
-      display:block;
-      height:46px;
-      width:auto;
-    }
-    .store-badges.small .store-badge img{ height:36px; }
-
-    .hero-card{
-      background: white;
-      border: 1px solid var(--line);
-      border-radius: var(--radius2);
-      box-shadow: var(--shadow);
-      padding: 16px;
-      max-width: 390px;
-      margin: 0 auto;
-    }
-
-    .phone-preview{
-      display:block;
-      width: 100%;
-      height: auto;
-      max-height: 620px;
-      object-fit: contain;
-      border-radius: 18px;
-      box-shadow: 0 22px 52px rgba(2,6,23,0.13);
-    }
-
-    /* SECTIONS */
-    section{ padding: 30px 0; }
-    .section-title{
-      font-size: 22px;
-      letter-spacing: -0.4px;
-      margin: 0 0 8px;
-    }
-    .section-sub{ margin: 0 0 18px; color: var(--muted); line-height: 1.55; }
-
-    .grid-3{
-      display:grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-    }
-    .card{
-      background: white;
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      box-shadow: 0 10px 28px rgba(2,6,23,0.08);
-      padding: 16px;
-    }
-    .card h3{ margin: 0 0 6px; font-size: 16px; }
-    .card p{ margin: 0; color: var(--muted); font-size: 14px; line-height: 1.55; }
-
-    .pill{
-      display:inline-flex;
-      padding: 6px 10px;
-      border-radius: 999px;
-      background: rgba(16,185,129,0.10);
-      border: 1px solid rgba(16,185,129,0.22);
-      color: #0B3B2A;
-      font-weight: 800;
-      font-size: 12px;
-      gap: 8px;
-      align-items:center;
-      width: fit-content;
-    }
-    .pill.alt{
-      background: rgba(245,158,11,0.14);
-      border-color: rgba(245,158,11,0.28);
-      color: #5A3B0B;
-    }
-
-    /* Screenshots */
-    .shot{
-      background: transparent;
-      border: 0;
-      box-shadow: none;
-      border-radius: var(--radius2);
-      overflow: visible;
-    }
-
-    .store-frame{
-      position: relative;
-      border-radius: 26px;
-      background: transparent;
-      border: 0;
-      box-shadow: none;
-      overflow: hidden;
-      transform: translateZ(0);
-    }
-
-    .store-frame img{
-      display:block;
-      width: 100%;
-      height: auto;
-      aspect-ratio: 1242 / 2688;
-      object-fit: contain;
-    }
-
-    /* Carousel */
-    .shots-carousel{
-      position: relative;
-      display: grid;
-      grid-template-columns: 48px 1fr 48px;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .shots-track{
-      display: flex;
-      gap: 20px;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      scroll-behavior: smooth;
-      -webkit-overflow-scrolling: touch;
-      padding: 8px 4px 18px;
-      scrollbar-width: none;
-    }
-    .shots-track::-webkit-scrollbar{ display:none; }
-
-    .shots-track .shot{
-      flex: 0 0 calc((100% - 40px) / 3);
-      scroll-snap-align: center;
-    }
-
-    .shot-nav{
-      width: 48px;
-      height: 48px;
-      border-radius: 999px;
-      border: 1px solid var(--line);
-      background: white;
-      box-shadow: 0 14px 32px rgba(2,6,23,0.12);
-      cursor: pointer;
-      font-size: 26px;
-      font-weight: 900;
-      line-height: 1;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      user-select: none;
-      transition: transform .12s ease, box-shadow .12s ease, background .12s ease;
-    }
-    .shot-nav:hover{
-      transform: translateY(-1px);
-      box-shadow: 0 18px 38px rgba(2,6,23,0.16);
-      background: #f8fbff;
-    }
-    .shot-nav:disabled{
-      opacity: 0.35;
-      cursor: not-allowed;
-    }
-
-    /* Dots */
-    .shots-dots{
-      display: flex;
-      gap: 8px;
-      justify-content: center;
-      margin-top: 4px;
-    }
-    .shots-dots button{
-      width: 8px;
-      height: 8px;
-      border-radius: 999px;
-      border: 0;
-      background: rgba(15,23,42,0.20);
-      cursor: pointer;
-    }
-    .shots-dots button.active{
-      width: 18px;
-      background: rgba(14,165,233,0.85);
-    }
-
-    @media (max-width: 980px){
-      .shots-carousel{
-        grid-template-columns: 1fr;
-        gap: 10px;
-      }
-      .shots-track .shot{
-        flex: 0 0 min(90%, 380px);
-      }
-      .shot-nav{
-        position: absolute;
-        top: 50%;
-        z-index: 2;
-        width: 42px;
-        height: 42px;
-        transform: translateY(-50%);
-      }
-      .shot-nav:hover{
-        transform: translateY(-50%);
-      }
-      .shot-nav.prev{ left: -4px; }
-      .shot-nav.next{ right: -4px; }
-      .store-frame{
-        border-radius: 22px;
-      }
-      .store-frame img{
-        max-height: none;
-      }
-    }
-
-
-
-    /* How it works */
-    .steps{
-      display:grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-    }
-    .step{
-      background: linear-gradient(180deg, #fff 0%, #f7fbff 100%);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      padding: 16px;
-      box-shadow: 0 10px 28px rgba(2,6,23,0.07);
-    }
-    .step b{
-      display:inline-flex;
-      width: 28px; height: 28px;
-      border-radius: 999px;
-      align-items:center; justify-content:center;
-      background: rgba(14,165,233,0.12);
-      border: 1px solid rgba(14,165,233,0.22);
-      margin-right: 8px;
-    }
-
-    /* FAQ */
-    details{
-      background: white;
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      padding: 14px 16px;
-      box-shadow: 0 10px 26px rgba(2,6,23,0.06);
-    }
-    details + details{ margin-top: 10px; }
-    summary{ cursor:pointer; font-weight: 800; }
-    details p{ margin: 10px 0 0; color: var(--muted); line-height: 1.55; }
-
-    /* Footer */
-    footer{
-      padding: 26px 0 34px;
-      border-top: 1px solid var(--line);
-      background: rgba(255,255,255,0.55);
-    }
-    .foot{
-      display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-    .foot small{ color: var(--muted); }
-
-    /* Responsive */
-    @media (max-width: 980px){
-      .hero-grid{ grid-template-columns: 1fr; }
-      .phone{ margin: 0; max-width: 380px; }
-      .shots{ grid-template-columns: repeat(2, 1fr); }
-      .grid-3{ grid-template-columns: 1fr; }
-      .steps{ grid-template-columns: 1fr; }
-      .nav-links{ display:none; }
-    }
-
-    /* Segurança: elimina qualquer overflow horizontal residual */
-html, body { overflow-x: hidden; }
-
-/* CTAs do topo */
-.nav-cta{
-  display:flex;
-  gap:10px;
-  align-items:center;
-  flex-wrap: wrap;            /* permite quebrar linha */
-  justify-content: flex-end;
+:root {
+  --blue:    #0EA5E9;
+  --blue2:   #38BDF8;
+  --blue3:   #E0F2FE;
+  --green:   #10B981;
+  --green2:  #34D399;
+  --amber:   #F59E0B;
+  --bg:      #F0F9FF;
+  --bg2:     #FFFFFF;
+  --text:    #071525;
+  --muted:   #4B5563;
+  --muted2:  #9CA3AF;
+  --line:    #E5E7EB;
+  --line2:   #BAE6FD;
+  --dark:    #071525;
+  --max:     1140px;
+  --font-d:  'Outfit', system-ui, sans-serif;
+  --font:    'Manrope', system-ui, sans-serif;
 }
 
-  /* Mobile 123 */
-  @media (max-width: 980px){
-    .nav-inner{
-      flex-wrap: wrap;          /* navbar pode virar 2 linhas */
-      gap: 10px;
-    }
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0; padding: 0;
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  overflow-x: hidden;
+}
+a { color: inherit; text-decoration: none; }
+.wrap { width: min(var(--max), calc(100% - 40px)); margin: 0 auto; }
 
-    .brand{
-      min-width: 0;             /* remove largura mínima que força overflow */
-      flex: 1 1 auto;
-    }
+/* ── NAV ── */
+.nav {
+  position: sticky; top: 0; z-index: 100;
+  backdrop-filter: blur(20px) saturate(1.4);
+  background: rgba(240,249,255,0.9);
+  border-bottom: 1px solid var(--line2);
+}
+.nav-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 13px 0; gap: 16px;
+}
+.brand { display: flex; align-items: center; gap: 10px; }
+.brand-logo {
+  height: 36px; width: auto;
+  border-radius: 9px; object-fit: contain;
+}
+.brand-name {
+  font-family: var(--font-d);
+  font-size: 18px; font-weight: 900;
+  letter-spacing: -0.5px; line-height: 1;
+}
+.brand-name .blue  { color: var(--blue); }
+.brand-name .green { color: var(--green); }
+.brand-sub { font-size: 11px; color: var(--muted2); margin-top: 2px; }
 
-    .nav-cta{
-      width: 100%;
-      justify-content: flex-start; /* CTAs descem e alinham à esquerda */
-    }
+.nav-links { display: flex; gap: 4px; }
+.nav-links a {
+  font-size: 13px; color: var(--muted); font-weight: 500;
+  padding: 7px 13px; border-radius: 8px;
+  transition: color .15s, background .15s;
+}
+.nav-links a:hover { background: var(--blue3); color: var(--blue); }
 
-    .nav-cta .btn{
-      flex: 1 1 0;              /* divide o espaço: 50%/50% */
-      justify-content: center;
-      padding: 10px 12px;
-      font-size: 13px;
-      white-space: nowrap;
-    }
-  }
+.nav-actions { display: flex; gap: 8px; align-items: center; }
 
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 11px 22px; border-radius: 12px;
+  font-family: var(--font); font-size: 14px; font-weight: 700;
+  cursor: pointer; white-space: nowrap; border: none;
+  transition: transform .15s, box-shadow .15s;
+}
+.btn:hover { transform: translateY(-1px); }
+.btn-blue {
+  background: var(--blue); color: #fff;
+  box-shadow: 0 4px 16px rgba(14,165,233,0.28);
+}
+.btn-blue:hover { background: #0284C7; box-shadow: 0 8px 24px rgba(14,165,233,0.38); }
+.btn-outline {
+  background: #fff; color: var(--text);
+  border: 1.5px solid var(--line) !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+.btn-outline:hover { border-color: var(--blue) !important; color: var(--blue); }
+.btn-ghost {
+  background: transparent; color: var(--muted);
+  font-size: 13px; padding: 9px 14px;
+}
+.btn-ghost:hover { color: var(--text); background: var(--blue3); }
+
+/* ── HERO ── */
+.hero {
+  background: var(--dark);
+  position: relative; overflow: hidden;
+}
+.hero-img-bg {
+  position: absolute; inset: 0;
+  object-fit: cover; width: 100%; height: 100%;
+  opacity: 0.35; filter: blur(3px) saturate(0.7);
+}
+.hero-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(7,21,37,0.65) 0%,
+    rgba(7,21,37,0.25) 40%,
+    rgba(7,21,37,0.85) 100%
+  );
+}
+.hero-inner {
+  position: relative; z-index: 2;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 0; min-height: 640px; align-items: center;
+}
+.hero-text { padding: 80px 48px 80px 0; }
+.hero-kicker {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 6px 14px; border-radius: 999px;
+  background: rgba(56,189,248,0.18);
+  border: 1px solid rgba(56,189,248,0.35);
+  font-size: 12px; font-weight: 700;
+  color: var(--blue2); margin-bottom: 22px; letter-spacing: 0.3px;
+}
+.kicker-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--blue2); animation: pulse 2s ease infinite;
+}
+.hero h1 {
+  font-family: var(--font-d);
+  font-size: clamp(36px, 4.2vw, 58px);
+  font-weight: 900; letter-spacing: -2px;
+  line-height: 1.02; color: #fff; margin: 0 0 20px;
+}
+.hero h1 .blue  { color: var(--blue2); }
+.hero h1 .green { color: var(--green2); }
+.hero h1 .amber { color: var(--amber); }
+.hero-desc {
+  font-size: clamp(15px, 1.5vw, 17px);
+  color: rgba(255,255,255,0.72);
+  line-height: 1.7; max-width: 44ch; margin: 0 0 32px;
+}
+.hero-desc b { color: #fff; font-weight: 600; }
+.hero-ctas { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+.store-badge {
+  display: inline-flex; border-radius: 10px;
+  transition: transform .15s, opacity .15s; opacity: 0.9;
+}
+.store-badge:hover { transform: translateY(-1px); opacity: 1; }
+.store-badge img { display: block; height: 44px; width: auto; }
+
+.hero-image-col {
+  display: flex; align-items: flex-end; justify-content: center;
+  padding-top: 40px;
+}
+.hero-screen-img {
+  width: 100%; max-width: 420px; height: auto; display: block;
+  filter: drop-shadow(0 40px 60px rgba(0,0,0,0.55));
+}
+
+.hero-stats-bar {
+  position: relative; z-index: 2;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  background: rgba(7,21,37,0.7); backdrop-filter: blur(10px);
+}
+.hero-stats-inner { display: flex; gap: 0; padding: 20px 0; }
+.hstat {
+  padding: 0 32px 0 0; margin-right: 32px;
+  border-right: 1px solid rgba(255,255,255,0.1);
+}
+.hstat:last-child { border: none; margin: 0; padding: 0; }
+.hstat-n {
+  font-family: var(--font-d); font-size: 22px; font-weight: 900;
+  color: var(--blue2); letter-spacing: -0.8px; line-height: 1; margin-bottom: 3px;
+}
+.hstat-l { font-size: 11px; color: rgba(255,255,255,0.45); font-weight: 500; }
+
+/* ── TICKER ── */
+.ticker {
+  overflow: hidden; padding: 11px 0;
+  background: var(--blue3);
+  border-top: 1px solid rgba(14,165,233,0.15);
+  border-bottom: 1px solid rgba(14,165,233,0.15);
+}
+.ticker-track {
+  display: flex; width: max-content;
+  animation: scroll-x 28s linear infinite;
+}
+.ticker-item {
+  display: flex; align-items: center; gap: 12px; padding: 0 20px;
+  font-family: var(--font-d); font-size: 12px; font-weight: 700;
+  color: var(--blue); letter-spacing: 0.5px; white-space: nowrap;
+}
+.ticker-sep {
+  width: 5px; height: 5px; border-radius: 50%;
+  background: var(--blue); opacity: 0.4; flex-shrink: 0;
+}
+@keyframes scroll-x {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ── CAROUSEL ── */
+.carousel-section {
+  padding: 72px 0 80px;
+  background: var(--dark);
+  overflow: hidden; position: relative;
+}
+.carousel-section::before {
+  content: "";
+  position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+  background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(14,165,233,0.07), transparent 70%);
+  pointer-events: none;
+}
+.carousel-header {
+  text-align: center; margin-bottom: 52px; position: relative; z-index: 2;
+}
+.carousel-tag {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family: var(--font-d); font-size: 11px; font-weight: 700;
+  color: var(--blue2); letter-spacing: 1.4px; text-transform: uppercase; margin-bottom: 14px;
+}
+.carousel-tag::before, .carousel-tag::after {
+  content: ""; width: 24px; height: 1px; background: var(--blue2); opacity: 0.6;
+}
+.carousel-title {
+  font-family: var(--font-d); font-size: clamp(24px, 3vw, 38px);
+  font-weight: 900; letter-spacing: -1.2px; color: #fff; margin: 0;
+}
+
+.carousel-viewport { position: relative; z-index: 2; overflow: visible; }
+.carousel-track {
+  display: flex; align-items: center; gap: 20px;
+  will-change: transform;
+  transition: transform .55s cubic-bezier(.25,.46,.45,.94);
+  cursor: grab; user-select: none;
+}
+.carousel-track.dragging { transition: none; cursor: grabbing; }
+
+.carousel-slide {
+  flex-shrink: 0; width: 270px; border-radius: 20px; overflow: hidden;
+  transform: scale(0.82); opacity: 0.45; filter: brightness(0.65);
+  transition: transform .55s ease, opacity .55s ease, filter .55s ease, box-shadow .55s ease;
+  cursor: pointer;
+}
+.carousel-slide.active {
+  transform: scale(1); opacity: 1; filter: brightness(1);
+  box-shadow:
+    0 0 0 1px rgba(56,189,248,0.2),
+    0 40px 100px rgba(0,0,0,0.55),
+    0 0 60px rgba(14,165,233,0.15);
+  cursor: default;
+}
+.carousel-slide img { width: 100%; height: auto; display: block; pointer-events: none; }
+
+.carousel-arrow {
+  position: absolute; top: 50%; z-index: 10;
+  width: 44px; height: 44px; border-radius: 50%;
+  border: 1.5px solid rgba(255,255,255,0.2);
+  background: rgba(255,255,255,0.08); backdrop-filter: blur(10px);
+  color: #fff; font-size: 20px; font-weight: 300;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; transform: translateY(-50%);
+  transition: background .15s, border-color .15s, transform .15s; user-select: none;
+}
+.carousel-arrow:hover {
+  background: rgba(14,165,233,0.25); border-color: rgba(14,165,233,0.5);
+  transform: translateY(-50%) scale(1.08);
+}
+.carousel-arrow.prev { left: 16px; }
+.carousel-arrow.next { right: 16px; }
+.carousel-arrow:disabled { opacity: 0.25; pointer-events: none; }
+
+.carousel-dots {
+  display: flex; justify-content: center; gap: 8px;
+  margin-top: 36px; position: relative; z-index: 2;
+}
+.carousel-dot {
+  width: 7px; height: 7px; border-radius: 99px;
+  background: rgba(255,255,255,0.25);
+  transition: width .3s ease, background .3s ease; cursor: pointer;
+}
+.carousel-dot.active { width: 24px; background: var(--blue2); }
+
+/* ── HOW IT WORKS ── */
+.steps-section { padding: 72px 0 80px; background: var(--bg2); }
+.section-header { text-align: center; margin-bottom: 48px; }
+.section-tag {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family: var(--font-d); font-size: 11px; font-weight: 700;
+  color: var(--blue); letter-spacing: 1.4px; text-transform: uppercase; margin-bottom: 12px;
+}
+.section-tag::before, .section-tag::after {
+  content: ""; width: 20px; height: 2px; background: var(--blue); border-radius: 99px;
+}
+.section-title {
+  font-family: var(--font-d); font-size: clamp(24px, 3vw, 36px);
+  font-weight: 900; letter-spacing: -1.2px; color: var(--text); margin: 0 0 10px;
+}
+.section-sub { font-size: 16px; color: var(--muted); margin: 0; }
+
+.steps-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 20px; margin-bottom: 40px;
+}
+.step-card {
+  background: var(--bg); border: 1.5px solid var(--line2);
+  border-radius: 16px; padding: 28px 24px;
+}
+.step-num {
+  font-family: var(--font-d); font-size: 11px; font-weight: 800;
+  color: var(--blue); letter-spacing: 1px; text-transform: uppercase;
+  margin-bottom: 12px; display: flex; align-items: center; gap: 8px;
+}
+.step-num::before {
+  content: attr(data-n);
+  width: 26px; height: 26px; border-radius: 50%;
+  background: var(--blue3); display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 900; color: var(--blue);
+}
+.step-card h3 {
+  font-family: var(--font-d); font-size: 18px; font-weight: 800;
+  letter-spacing: -0.5px; margin: 0 0 8px;
+}
+.step-card p { font-size: 14px; color: var(--muted); line-height: 1.65; margin: 0; }
+.steps-ctas { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+
+/* ── FAQ ── */
+.faq-section { padding: 72px 0 80px; background: var(--bg); }
+.faq-list { margin-top: 0; }
+details {
+  background: var(--bg2); border: 1.5px solid var(--line);
+  border-radius: 14px; padding: 18px 22px; margin-bottom: 10px;
+  transition: border-color .15s;
+}
+details[open] { border-color: var(--blue); }
+summary {
+  cursor: pointer; font-weight: 700; font-size: 15px; font-family: var(--font);
+  list-style: none; display: flex; justify-content: space-between; align-items: center;
+}
+summary::after {
+  content: "+"; font-size: 20px; font-weight: 300; color: var(--muted2);
+  flex-shrink: 0; transition: transform .2s ease;
+}
+details[open] summary::after { transform: rotate(45deg); }
+details p { margin: 12px 0 0; color: var(--muted); line-height: 1.65; font-size: 14px; }
+
+/* ── CTA ── */
+.cta-section {
+  background: linear-gradient(135deg, #071525 0%, #0C2A4A 60%, #0369A1 100%);
+  padding: 88px 0; text-align: center; position: relative; overflow: hidden;
+}
+.cta-section::before {
+  content: ""; position: absolute; top: -100px; right: -100px;
+  width: 400px; height: 400px; border-radius: 50%;
+  background: rgba(14,165,233,0.1); pointer-events: none;
+}
+.cta-section::after {
+  content: ""; position: absolute; bottom: -80px; left: -80px;
+  width: 320px; height: 320px; border-radius: 50%;
+  background: rgba(16,185,129,0.07); pointer-events: none;
+}
+.cta-logo {
+  height: 64px; width: auto; margin: 0 auto 24px; display: block;
+  border-radius: 16px; box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+}
+.cta-section h2 {
+  font-family: var(--font-d); font-size: clamp(28px, 4vw, 46px);
+  font-weight: 900; letter-spacing: -1.5px; color: #fff; margin: 0 0 14px;
+}
+.cta-section p { color: rgba(255,255,255,0.7); font-size: 18px; margin: 0 0 36px; }
+.cta-badges { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
+.cta-badges .store-badge img { height: 52px; }
+.cta-free { font-size: 13px; color: rgba(255,255,255,0.4); margin-top: 18px; font-weight: 500; }
+.cta-admin { margin-top: 20px; }
+.cta-admin a {
+  font-size: 13px; color: rgba(255,255,255,0.5);
+  text-decoration: underline; text-underline-offset: 3px; transition: color .15s;
+}
+.cta-admin a:hover { color: rgba(255,255,255,0.85); }
+
+/* ── FOOTER ── */
+footer { background: var(--dark); padding: 36px 0 44px; }
+.footer-inner {
+  display: flex; flex-wrap: wrap; gap: 24px;
+  justify-content: space-between; align-items: flex-start;
+}
+.footer-brand { display: flex; align-items: center; gap: 10px; }
+.footer-brand-logo { height: 32px; width: auto; border-radius: 8px; }
+.footer-brand-name { font-family: var(--font-d); font-size: 16px; font-weight: 900; color: #fff; }
+.footer-brand-name .blue { color: var(--blue2); }
+.footer-sub { font-size: 11px; color: rgba(255,255,255,0.3); margin-top: 3px; }
+.footer-links { display: flex; flex-direction: column; gap: 8px; }
+.footer-links a { font-size: 12px; color: rgba(255,255,255,0.45); transition: color .15s; }
+.footer-links a:hover { color: var(--blue2); }
+.footer-copy { font-size: 12px; color: rgba(255,255,255,0.3); align-self: flex-end; }
+
+/* ── UTILS ── */
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.5; transform: scale(0.75); }
+}
+.reveal {
+  opacity: 0; transform: translateY(24px);
+  transition: opacity .6s ease, transform .6s ease;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  .hero-inner { grid-template-columns: 1fr; min-height: auto; }
+  .hero-text { padding: 56px 0 32px; }
+  .hero-image-col { padding: 0 0 40px; }
+  .hero-screen-img { max-width: 300px; }
+  .hero-stats-inner { flex-wrap: wrap; gap: 20px; }
+  .hstat { border: none; padding: 0; margin: 0; }
+  .nav-links { display: none; }
+  .cta-section { padding: 64px 0; }
+  .carousel-slide { width: 230px; }
+  .steps-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) {
+  .hero-ctas { flex-direction: column; align-items: flex-start; }
+  .cta-badges { flex-direction: column; align-items: center; }
+  .carousel-slide { width: 200px; }
+  .carousel-arrow { display: none; }
+  .steps-ctas { flex-direction: column; align-items: center; }
+}
   </style>
 </head>
 
 <body>
+
+  <!-- NAV -->
   <div class="nav">
     <div class="wrap nav-inner">
       <a class="brand" href="../">
         <img class="brand-logo" src="assets/logo-myparkday2.png" alt="MyParkDay"/>
         <div>
-          <div class="brand-title">MyParkDay</div>
+          <div class="brand-name"><span class="blue">MyPark</span><span class="green">Day</span></div>
           <div class="brand-sub">Smart theme park itineraries</div>
         </div>
       </a>
 
-      <div class="nav-links">
-        <a href="#prints">Screens</a>
-        <a href="#funcionalidades">Features</a>
-        <a href="privacy-policy-en.html">Privacy</a>
-        <a href="#como-funciona">How it works</a>
+      <nav class="nav-links" aria-label="Navigation">
+        <a href="#screens">Screens</a>
+        <a href="#how-it-works">How it works</a>
         <a href="#faq">FAQ</a>
+        <a href="privacy-policy-en.html">Privacy</a>
         <a href="index.html">PT</a>
-      </div>
+      </nav>
 
-      <div class="nav-cta">
-        <a class="btn ghost" href="../">← VeDigitalHub</a>
-        <a class="btn" href="https://myparkday-3379a.web.app" target="_blank" rel="noopener">Admin area</a>
-        <a class="btn primary" id="smartDownload" href="#baixar">Download now</a>
+      <div class="nav-actions">
+        <a class="btn btn-ghost" href="https://myparkday-3379a.web.app" target="_blank" rel="noopener">Admin area</a>
+        <a class="btn btn-blue" id="smartDownload" href="#download">Download free</a>
       </div>
-
     </div>
   </div>
 
+  <!-- HERO -->
   <header class="hero">
-    <div class="wrap hero-grid">
-      <div>
-        <div class="kicker">⏱️ Optimize your park day</div>
-        <h1>Less time in line.<br/>More attractions in your plan.</h1>
-        <p>
-          <b>MyParkDay</b> turns your park visit into a smart itinerary. It helps you
-          <b>reduce wait times</b>, choose better moments for popular attractions, and <b>save time</b>
-          with faster decisions. With a more strategic attraction order, you <b>walk less</b>
-          and avoid unnecessary backtracking. The app also brings together <b>weather forecasts</b>
-          and <b>crowd estimates</b>, so you can adjust your day in real time and enjoy more with less stress.
-        </p>
+    <img class="hero-img-bg" src="assets/en-home-planned-better.png" alt="" aria-hidden="true"/>
+    <div class="hero-overlay"></div>
 
-
-        <div class="cta-row" id="baixar">
-          <div class="store-badges" aria-label="Download MyParkDay">
-            <a class="store-badge" href="https://apps.apple.com/br/app/myparkday/id6762487908" target="_blank" rel="noopener" aria-label="Download on the App Store">
-              <img src="../assets/badge-app-store.svg" alt="Download on the App Store"/>
-            </a>
-            <a class="store-badge" href="https://play.google.com/store/apps/details?id=com.vedigitalhub.myparkday&amp;pcampaignid=web_share" target="_blank" rel="noopener" aria-label="Get it on Google Play">
-              <img src="../assets/badge-google-play.svg" alt="Get it on Google Play"/>
-            </a>
-          </div>
-          <a class="btn" href="#prints">View screens</a>
-          <a class="btn ghost" href="https://myparkday-3379a.web.app" target="_blank" rel="noopener">Admin area</a>
+    <div class="wrap hero-inner">
+      <div class="hero-text">
+        <div class="hero-kicker">
+          <span class="kicker-dot"></span>
+          Available now — iOS &amp; Android
         </div>
 
-        <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top: 14px;">
-          <span class="pill">✅ Itineraries and organization</span>
-          <span class="pill alt">✨ Better experience</span>
+        <h1>
+          Less time<br>
+          in <span class="amber">line.</span><br>
+          More <span class="blue">attractions</span><br>
+          in your day.
+        </h1>
+
+        <p class="hero-desc">
+          MyParkDay turns your park visit into a <b>smart itinerary</b>.
+          Reduce wait times, choose the best moments for popular attractions,
+          and <b>save hours</b> at the park.
+        </p>
+
+        <div class="hero-ctas" id="download">
+          <a class="store-badge" href="https://apps.apple.com/br/app/myparkday/id6762487908" target="_blank" rel="noopener" aria-label="Download on the App Store">
+            <img src="../assets/badge-app-store.svg" alt="Download on the App Store"/>
+          </a>
+          <a class="store-badge" href="https://play.google.com/store/apps/details?id=com.vedigitalhub.myparkday&pcampaignid=web_share" target="_blank" rel="noopener" aria-label="Get it on Google Play">
+            <img src="../assets/badge-google-play.svg" alt="Get it on Google Play"/>
+          </a>
         </div>
       </div>
 
-      <div class="hero-card" aria-label="App preview">
-        <img class="phone-preview" src="assets/myparkday-route-phone-preview-v2.png" alt="Phone showing the MyParkDay itinerary screen"/>
+      <div class="hero-image-col">
+        <img class="hero-screen-img" src="assets/preview-myparkday.png"
+             alt="MyParkDay — smart theme park itinerary"/>
+      </div>
+    </div>
+
+    <div class="hero-stats-bar">
+      <div class="wrap hero-stats-inner">
+        <div class="hstat">
+          <div class="hstat-n">iOS</div>
+          <div class="hstat-l">App Store</div>
+        </div>
+        <div class="hstat">
+          <div class="hstat-n">Android</div>
+          <div class="hstat-l">Google Play</div>
+        </div>
+        <div class="hstat">
+          <div class="hstat-n">Free</div>
+          <div class="hstat-l">No subscription</div>
+        </div>
+        <div class="hstat">
+          <div class="hstat-n">🌦️</div>
+          <div class="hstat-l">Live weather</div>
+        </div>
       </div>
     </div>
   </header>
 
-  <section id="funcionalidades">
-    <div class="wrap">
-      <h2 class="section-title">What MyParkDay does for you</h2>
-      <p class="section-sub">Clearer planning for anyone who wants to make the most of every hour in the park.</p>
-
-      <div class="grid-3">
-        <div class="card">
-          <h3>Smart itineraries</h3>
-          <p>Create and adjust your plan by prioritizing attractions and avoiding unnecessary walking.</p>
-        </div>
-        <div class="card">
-          <h3>Time optimization</h3>
-          <p>Get support to decide what to do first and fit your day together more efficiently.</p>
-        </div>
-        <div class="card">
-          <h3>Better experience</h3>
-          <p>Simple planning to reduce stress, organize your group, and enjoy more of the park.</p>
-        </div>
-      </div>
+  <!-- TICKER -->
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-track">
+      <span class="ticker-item"><span class="ticker-sep"></span>Smart itineraries</span>
+      <span class="ticker-item"><span class="ticker-sep"></span>Reduce wait times</span>
+      <span class="ticker-item"><span class="ticker-sep"></span>Live weather forecast</span>
+      <span class="ticker-item"><span class="ticker-sep"></span>Crowd estimates</span>
+      <span class="ticker-item"><span class="ticker-sep"></span>Day organization</span>
+      <span class="ticker-item"><span class="ticker-sep"></span>Crowd history</span>
+      <span class="ticker-item"><span class="ticker-sep"></span>Parking reminder</span>
+      <span class="ticker-item"><span class="ticker-sep"></span>Smart itineraries</span>
+      <span class="ticker-item"><span class="ticker-sep"></span>Reduce wait times</span>
+      <span class="ticker-item"><span class="ticker-sep"></span>Live weather forecast</span>
+      <span class="ticker-item"><span class="ticker-sep"></span>Crowd estimates</span>
+      <span class="ticker-item"><span class="ticker-sep"></span>Day organization</span>
+      <span class="ticker-item"><span class="ticker-sep"></span>Crowd history</span>
+      <span class="ticker-item"><span class="ticker-sep"></span>Parking reminder</span>
     </div>
-  </section>
+  </div>
 
-  <section id="prints">
-    <div class="wrap">
-      <h2 class="section-title">App screens</h2>
-      <p class="section-sub">See examples of the app's main areas.</p>
+  <main>
 
-      <div class="shots-carousel" aria-label="MyParkDay screen carousel">
-        <button class="shot-nav prev" type="button" aria-label="Previous image">‹</button>
-
-        <div class="shots-track" id="shotsTrack">
-          <div class="shot">
-            <div class="store-frame">
-              <img src="assets/en-home-planned-better.png" alt="MyParkDay: your park day, planned much better"/>
-            </div>
-          </div>
-
-          <div class="shot">
-            <div class="store-frame">
-              <img src="assets/en-understand-best-times.png" alt="MyParkDay: understand the best times to visit"/>
-            </div>
-          </div>
-
-          <div class="shot">
-            <div class="store-frame">
-              <img src="assets/en-never-forget-parking.png" alt="MyParkDay: never forget where you parked again"/>
-            </div>
-          </div>
-
-          <div class="shot">
-            <div class="store-frame">
-              <img src="assets/en-weather-day-out.png" alt="MyParkDay: the right weather for your day out"/>
-            </div>
-          </div>
-
-          <div class="shot">
-            <div class="store-frame">
-              <img src="assets/en-crowd-levels-before-you-go.png" alt="MyParkDay: see crowd levels before you go"/>
-            </div>
-          </div>
-
-          <div class="shot">
-            <div class="store-frame">
-              <img src="assets/en-attraction-details.png" alt="MyParkDay: everything about each attraction before you decide"/>
-            </div>
-          </div>
-
-          <div class="shot">
-            <div class="store-frame">
-              <img src="assets/en-start-itinerary.png" alt="MyParkDay: start your itinerary the right way"/>
-            </div>
-          </div>
-
-          <div class="shot">
-            <div class="store-frame">
-              <img src="assets/en-follow-every-step.png" alt="MyParkDay: follow every step of your visit"/>
-            </div>
-          </div>
-
-        </div>
-
-        <button class="shot-nav next" type="button" aria-label="Next image">›</button>
+    <!-- CAROUSEL -->
+    <section class="carousel-section" id="screens">
+      <div class="carousel-header reveal">
+        <div class="carousel-tag">App screens</div>
+        <h2 class="carousel-title">Everything you need to make the most of every hour</h2>
       </div>
 
-      <div class="shots-dots" id="shotsDots" aria-label="Carousel indicators"></div>
-
-    </div>
-  </section>
-
-  <section id="como-funciona">
-    <div class="wrap">
-      <h2 class="section-title">How it works</h2>
-      <p class="section-sub">Organize your visit in a few steps and adjust your itinerary throughout the day.</p>
-
-      <div class="steps">
-        <div class="step">
-          <div><b>1</b><strong>Choose the park and date</strong></div>
-          <p class="muted">Set the context for your day so the app can help build the right plan.</p>
+      <div class="carousel-viewport" id="carouselViewport">
+        <div class="carousel-track" id="carouselTrack">
+          <div class="carousel-slide" data-index="0">
+            <img src="assets/en-home-planned-better.png"
+                 alt="MyParkDay: your park day, planned much better" draggable="false"/>
+          </div>
+          <div class="carousel-slide" data-index="1">
+            <img src="assets/en-understand-best-times.png"
+                 alt="MyParkDay: understand the best times to visit" draggable="false"/>
+          </div>
+          <div class="carousel-slide" data-index="2">
+            <img src="assets/en-never-forget-parking.png"
+                 alt="MyParkDay: never forget where you parked again" draggable="false"/>
+          </div>
+          <div class="carousel-slide" data-index="3">
+            <img src="assets/en-weather-day-out.png"
+                 alt="MyParkDay: the right weather for your day out" draggable="false"/>
+          </div>
+          <div class="carousel-slide" data-index="4">
+            <img src="assets/en-crowd-levels-before-you-go.png"
+                 alt="MyParkDay: see crowd levels before you go" draggable="false"/>
+          </div>
+          <div class="carousel-slide" data-index="5">
+            <img src="assets/en-attraction-details.png"
+                 alt="MyParkDay: everything about each attraction before you decide" draggable="false"/>
+          </div>
+          <div class="carousel-slide" data-index="6">
+            <img src="assets/en-start-itinerary.png"
+                 alt="MyParkDay: start your itinerary the right way" draggable="false"/>
+          </div>
+          <div class="carousel-slide" data-index="7">
+            <img src="assets/en-follow-every-step.png"
+                 alt="MyParkDay: follow every step of your visit" draggable="false"/>
+          </div>
         </div>
-        <div class="step">
-          <div><b>2</b><strong>Build your itinerary</strong></div>
-          <p class="muted">Select attractions and organize priorities based on your travel style.</p>
-        </div>
-        <div class="step">
-          <div><b>3</b><strong>Enjoy and adjust</strong></div>
-          <p class="muted">Follow your itinerary and adapt it as your day changes.</p>
-        </div>
+
+        <button class="carousel-arrow prev" id="prevBtn" aria-label="Previous">&#8249;</button>
+        <button class="carousel-arrow next" id="nextBtn" aria-label="Next">&#8250;</button>
       </div>
 
-      <div style="margin-top:16px; display:flex; gap:10px; flex-wrap:wrap;">
-        <div class="store-badges" aria-label="Download MyParkDay">
+      <div class="carousel-dots" id="carouselDots"></div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="steps-section" id="how-it-works">
+      <div class="wrap">
+        <div class="section-header reveal">
+          <div class="section-tag">How it works</div>
+          <h2 class="section-title">Plan your visit in 3 steps</h2>
+          <p class="section-sub">Adapt your itinerary throughout the day as things change.</p>
+        </div>
+
+        <div class="steps-grid reveal">
+          <div class="step-card">
+            <div class="step-num" data-n="1">Step 1</div>
+            <h3>Choose the park and date</h3>
+            <p>Set the context for your day so the app can build the right plan for you.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-num" data-n="2">Step 2</div>
+            <h3>Build your itinerary</h3>
+            <p>Select attractions and set priorities based on your travel style — families, couples, or groups.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-num" data-n="3">Step 3</div>
+            <h3>Enjoy and adjust</h3>
+            <p>Follow your itinerary and adapt in real time with live weather, crowd data, and wait estimates.</p>
+          </div>
+        </div>
+
+        <div class="steps-ctas reveal">
           <a class="store-badge" href="https://apps.apple.com/br/app/myparkday/id6762487908" target="_blank" rel="noopener" aria-label="Download on the App Store">
             <img src="../assets/badge-app-store.svg" alt="Download on the App Store"/>
           </a>
-          <a class="store-badge" href="https://play.google.com/store/apps/details?id=com.vedigitalhub.myparkday&amp;pcampaignid=web_share" target="_blank" rel="noopener" aria-label="Get it on Google Play">
+          <a class="store-badge" href="https://play.google.com/store/apps/details?id=com.vedigitalhub.myparkday&pcampaignid=web_share" target="_blank" rel="noopener" aria-label="Get it on Google Play">
             <img src="../assets/badge-google-play.svg" alt="Get it on Google Play"/>
           </a>
         </div>
-        <a class="btn" href="../#contato">I need support</a>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section id="faq">
-    <div class="wrap">
-      <h2 class="section-title">Frequently asked questions</h2>
-      <p class="section-sub">Key questions for anyone discovering the app.</p>
+    <!-- FAQ -->
+    <section class="faq-section" id="faq">
+      <div class="wrap">
+        <div class="section-header reveal">
+          <div class="section-tag">FAQ</div>
+          <h2 class="section-title">Frequently asked questions</h2>
+          <p class="section-sub">Key questions for anyone discovering the app.</p>
+        </div>
 
-      <details>
-        <summary>Is MyParkDay free?</summary>
-        <p>Availability and usage conditions may vary depending on the published version. Check VeDigitalHub's official channels to confirm current access.</p>
-      </details>
+        <div class="faq-list reveal">
+          <details>
+            <summary>Is MyParkDay free?</summary>
+            <p>Availability and usage conditions may vary depending on the published version. Check VeDigitalHub's official channels to confirm current access.</p>
+          </details>
+          <details>
+            <summary>Does it work offline?</summary>
+            <p>Some information may require an internet connection to stay updated, including weather forecasts and crowd estimates.</p>
+          </details>
+          <details>
+            <summary>Which parks are supported?</summary>
+            <p>The app supports theme parks with registered attractions. New parks are added with periodic updates.</p>
+          </details>
+          <details>
+            <summary>Where can I get support?</summary>
+            <p>Contact us through the VeDigitalHub support section or send an email to contato@vedigitalhub.com.</p>
+          </details>
+        </div>
+      </div>
+    </section>
 
-      <details>
-        <summary>Does it work offline?</summary>
-        <p>Some information may require an internet connection to stay updated, including external planning data, weather, and estimates.</p>
-      </details>
+    <!-- CTA -->
+    <section class="cta-section">
+      <div class="wrap">
+        <img class="cta-logo" src="assets/logo-myparkday2.png" alt="MyParkDay"
+             onerror="this.style.display='none'"/>
+        <h2>Download free now</h2>
+        <p>Available on iPhone and Android.<br>Your park day, smarter.</p>
+        <div class="cta-badges">
+          <a class="store-badge" href="https://apps.apple.com/br/app/myparkday/id6762487908" target="_blank" rel="noopener" aria-label="Download on the App Store">
+            <img src="../assets/badge-app-store.svg" alt="Download on the App Store"/>
+          </a>
+          <a class="store-badge" href="https://play.google.com/store/apps/details?id=com.vedigitalhub.myparkday&pcampaignid=web_share" target="_blank" rel="noopener" aria-label="Get it on Google Play">
+            <img src="../assets/badge-google-play.svg" alt="Get it on Google Play"/>
+          </a>
+        </div>
+        <p class="cta-free">Free · iOS &amp; Android · No intrusive ads</p>
+        <p class="cta-admin">
+          <a href="https://myparkday-3379a.web.app" target="_blank" rel="noopener">Access admin area</a>
+        </p>
+      </div>
+    </section>
 
-      <details>
-        <summary>Where can I get support?</summary>
-        <p>Contact us through the VeDigitalHub support section or send an email to contato@vedigitalhub.com.</p>
-      </details>
-    </div>
-  </section>
+  </main>
 
+  <!-- FOOTER -->
   <footer>
-    <div class="wrap foot">
+    <div class="wrap footer-inner">
       <div>
-        <div style="display:flex; align-items:center; gap:10px;">
-          <img class="brand-logo" src="assets/logo-myparkday2.png" alt="MyParkDay"/>
+        <div class="footer-brand">
+          <img class="footer-brand-logo" src="assets/logo-myparkday2.png" alt="MyParkDay"/>
           <div>
-            <div class="brand-title">MyParkDay</div>
-            <small class="muted">by VeDigitalHub</small>
+            <div class="footer-brand-name"><span class="blue">MyPark</span>Day</div>
+            <div class="footer-sub">by VeDigitalHub</div>
           </div>
         </div>
-        <div style="margin-top:10px;">
-          <small class="muted">© <span id="year"></span> VeDigitalHub. All rights reserved.</small>
+        <div style="margin-top:12px;">
+          <span style="font-size:12px;color:rgba(255,255,255,0.3);">© <span id="year"></span> VeDigitalHub. All rights reserved.</span>
         </div>
       </div>
 
-      <div>
-        <small class="muted"><b>Links</b></small><br/>
-        <small><a href="privacy-policy-en.html">Terms & Privacy</a></small><br/>
-        <small><a href="index.html">Português</a></small><br/>
-        <small><a href="../">Back to site</a></small>
+      <div class="footer-links">
+        <a href="privacy-policy-en.html">Terms &amp; Privacy</a>
+        <a href="index.html">Português</a>
+        <a href="../">← VeDigitalHub</a>
       </div>
 
-      <div>
-        <small class="muted"><b>Download</b></small><br/>
-        <div class="store-badges small" style="margin-top:8px;">
-          <a class="store-badge" href="https://apps.apple.com/br/app/myparkday/id6762487908" target="_blank" rel="noopener" aria-label="Download on the App Store">
-            <img src="../assets/badge-app-store.svg" alt="Download on the App Store"/>
-          </a>
-          <a class="store-badge" href="https://play.google.com/store/apps/details?id=com.vedigitalhub.myparkday&amp;pcampaignid=web_share" target="_blank" rel="noopener" aria-label="Get it on Google Play">
-            <img src="../assets/badge-google-play.svg" alt="Get it on Google Play"/>
-          </a>
-        </div>
+      <div class="footer-links">
+        <a href="https://apps.apple.com/br/app/myparkday/id6762487908" target="_blank" rel="noopener">App Store</a>
+        <a href="https://play.google.com/store/apps/details?id=com.vedigitalhub.myparkday" target="_blank" rel="noopener">Google Play</a>
+        <a href="https://myparkday-3379a.web.app" target="_blank" rel="noopener">Admin area</a>
+        <a href="mailto:contato@vedigitalhub.com">Contact</a>
       </div>
     </div>
   </footer>
@@ -699,163 +738,100 @@ html, body { overflow-x: hidden; }
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    (function(){
-      const downloadButton = document.getElementById("smartDownload");
-      if(!downloadButton) return;
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add("visible"); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.08 });
+    document.querySelectorAll(".reveal").forEach(el => io.observe(el));
 
-      const APP_STORE_URL = "https://apps.apple.com/br/app/myparkday/id6762487908";
-      const GOOGLE_PLAY_URL = "https://play.google.com/store/apps/details?id=com.vedigitalhub.myparkday&pcampaignid=web_share";
-      const userAgent = navigator.userAgent || "";
-      const platform = navigator.platform || "";
-      const isAndroid = /android/i.test(userAgent);
-      const isIOS = /iPad|iPhone|iPod/i.test(userAgent) ||
-        (platform === "MacIntel" && navigator.maxTouchPoints > 1);
+    (function() {
+      const btn = document.getElementById("smartDownload");
+      if (!btn) return;
+      const ua = navigator.userAgent;
+      const isAndroid = /android/i.test(ua);
+      const isIOS = /iPad|iPhone|iPod/i.test(ua) ||
+        (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+      if (isAndroid) btn.href = "https://play.google.com/store/apps/details?id=com.vedigitalhub.myparkday&pcampaignid=web_share";
+      else if (isIOS) btn.href = "https://apps.apple.com/br/app/myparkday/id6762487908";
+    })();
 
-      if(isAndroid){
-        downloadButton.href = GOOGLE_PLAY_URL;
-      }else if(isIOS){
-        downloadButton.href = APP_STORE_URL;
+    (function() {
+      const track    = document.getElementById("carouselTrack");
+      const viewport = document.getElementById("carouselViewport");
+      const dotsEl   = document.getElementById("carouselDots");
+      const prevBtn  = document.getElementById("prevBtn");
+      const nextBtn  = document.getElementById("nextBtn");
+      const slides   = [...track.querySelectorAll(".carousel-slide")];
+      const GAP      = 20;
+      let current    = 0;
+      let startX     = 0;
+      let dragDelta  = 0;
+      let isDragging = false;
+
+      slides.forEach((_, i) => {
+        const d = document.createElement("span");
+        d.className = "carousel-dot" + (i === 0 ? " active" : "");
+        d.addEventListener("click", () => goTo(i));
+        dotsEl.appendChild(d);
+      });
+      const dots = [...dotsEl.querySelectorAll(".carousel-dot")];
+
+      function slideW() { return slides[0].offsetWidth; }
+      function viewW()  { return viewport.offsetWidth; }
+      function calcOffset(idx) {
+        return (viewW() / 2) - (slideW() / 2) - idx * (slideW() + GAP);
       }
+      function render(animate = true) {
+        if (!animate) track.style.transition = "none";
+        track.style.transform = `translateX(${calcOffset(current)}px)`;
+        if (!animate) requestAnimationFrame(() => track.style.transition = "");
+        slides.forEach((s, i) => s.classList.toggle("active", i === current));
+        dots.forEach((d, i)   => d.classList.toggle("active",  i === current));
+        prevBtn.disabled = current === 0;
+        nextBtn.disabled = current === slides.length - 1;
+      }
+      function goTo(i) {
+        current = Math.max(0, Math.min(i, slides.length - 1));
+        render();
+      }
+
+      prevBtn.addEventListener("click", () => goTo(current - 1));
+      nextBtn.addEventListener("click", () => goTo(current + 1));
+      slides.forEach((s, i) => s.addEventListener("click", () => { if (i !== current) goTo(i); }));
+
+      function onDragStart(x) { startX = x; isDragging = true; track.classList.add("dragging"); }
+      function onDragMove(x)  { if (!isDragging) return; dragDelta = x - startX; }
+      function onDragEnd() {
+        if (!isDragging) return;
+        isDragging = false; track.classList.remove("dragging");
+        if (dragDelta < -60) goTo(current + 1);
+        else if (dragDelta > 60) goTo(current - 1);
+        else render();
+        dragDelta = 0;
+      }
+
+      track.addEventListener("mousedown",  e => onDragStart(e.clientX));
+      window.addEventListener("mousemove", e => onDragMove(e.clientX));
+      window.addEventListener("mouseup",   onDragEnd);
+      track.addEventListener("touchstart", e => onDragStart(e.touches[0].clientX), { passive: true });
+      track.addEventListener("touchmove",  e => onDragMove(e.touches[0].clientX),  { passive: true });
+      track.addEventListener("touchend",   onDragEnd);
+
+      document.addEventListener("keydown", e => {
+        if (e.key === "ArrowLeft")  goTo(current - 1);
+        if (e.key === "ArrowRight") goTo(current + 1);
+      });
+
+      let autoTimer = setInterval(() => goTo(current < slides.length - 1 ? current + 1 : 0), 4000);
+      viewport.addEventListener("mouseenter", () => clearInterval(autoTimer));
+      viewport.addEventListener("mouseleave", () => {
+        autoTimer = setInterval(() => goTo(current < slides.length - 1 ? current + 1 : 0), 4000);
+      });
+
+      window.addEventListener("resize", () => render(false));
+      render(false);
     })();
   </script>
-  <script>
-(function(){
-  const track = document.getElementById("shotsTrack");
-  const dotsWrap = document.getElementById("shotsDots");
-  if(!track || !dotsWrap) return;
-
-  const prevBtn = document.querySelector(".shot-nav.prev");
-  const nextBtn = document.querySelector(".shot-nav.next");
-  const items = Array.from(track.querySelectorAll(".shot"));
-  let activePage = 0;
-
-  // Keeps 3 closed groups of 3 images.
-  function perPage(){
-    return 3;
-  }
-
-  function totalPages(){
-    return Math.max(1, Math.ceil(items.length / perPage()));
-  }
-
-  function clamp(v, a, b){ return Math.max(a, Math.min(b, v)); }
-
-  function currentIndex(){
-    if(!items.length) return 0;
-
-    const trackBox = track.getBoundingClientRect();
-    const trackCenter = trackBox.left + (trackBox.width / 2);
-
-    let closest = 0;
-    let closestDistance = Infinity;
-
-    items.forEach((item, index) => {
-      const box = item.getBoundingClientRect();
-      const itemCenter = box.left + (box.width / 2);
-      const distance = Math.abs(trackCenter - itemCenter);
-
-      if(distance < closestDistance){
-        closest = index;
-        closestDistance = distance;
-      }
-    });
-
-    return closest;
-  }
-
-  function currentPage(){
-    return clamp(Math.floor(currentIndex() / perPage()), 0, totalPages() - 1);
-  }
-
-  function scrollToPage(p){
-    const n = totalPages();
-    activePage = ((p % n) + n) % n; // loop infinito
-
-    const index = Math.min(activePage * perPage(), items.length - 1);
-    items[index]?.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
-    updateUI();
-    setTimeout(updateUI, 120);
-  }
-
-  // Dots per page, not per item.
-  let dots = [];
-  function buildDots(){
-    dotsWrap.innerHTML = "";
-    dots = [];
-    const n = totalPages();
-
-    for(let i = 0; i < n; i++){
-      const b = document.createElement("button");
-      b.type = "button";
-      b.setAttribute("aria-label", `Go to page ${i+1}`);
-      b.addEventListener("click", () => scrollToPage(i));
-      dotsWrap.appendChild(b);
-      dots.push(b);
-    }
-    updateUI();
-  }
-
-  function updateUI(){
-    dots.forEach((d, idx) => d.classList.toggle("active", idx === activePage));
-
-    // Infinite loop: keep navigation enabled.
-    if(prevBtn) prevBtn.disabled = false;
-    if(nextBtn) nextBtn.disabled = false;
-  }
-
-  prevBtn?.addEventListener("click", () => scrollToPage(currentPage() - 1));
-  nextBtn?.addEventListener("click", () => scrollToPage(currentPage() + 1));
-
-  // Update UI while scrolling.
-  let t = null;
-  track.addEventListener("scroll", () => {
-    clearTimeout(t);
-    t = setTimeout(() => {
-      activePage = currentPage();
-      updateUI();
-    }, 80);
-  });
-
-  // Desktop drag; mobile keeps native swipe.
-  let isDown = false, startX = 0, startLeft = 0;
-
-  track.addEventListener("mousedown", (e) => {
-    isDown = true;
-    startX = e.pageX;
-    startLeft = track.scrollLeft;
-    track.style.cursor = "grabbing";
-    e.preventDefault();
-  });
-
-  window.addEventListener("mouseup", () => {
-    if(!isDown) return;
-    isDown = false;
-    track.style.cursor = "grab";
-    // Snap to the nearest page.
-    activePage = currentPage();
-    scrollToPage(activePage);
-  });
-
-  window.addEventListener("mousemove", (e) => {
-    if(!isDown) return;
-    const dx = e.pageX - startX;
-    track.scrollLeft = startLeft - dx;
-  });
-
-  // Recalculate when the viewport changes.
-  window.addEventListener("resize", () => {
-    activePage = clamp(activePage, 0, totalPages() - 1);
-    buildDots();
-    scrollToPage(activePage);
-  });
-
-  track.style.cursor = "grab";
-  activePage = currentPage();
-  buildDots();
-})();
-</script>
-
-
-
 </body>
 </html>
