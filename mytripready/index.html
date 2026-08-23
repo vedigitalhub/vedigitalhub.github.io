@@ -1,0 +1,381 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>MyTripReady • Sua viagem, organizada e sem surpresas</title>
+  <meta name="description" content="MyTripReady: roteiro, documentos e checklist de exigências de entrada por país, tudo em um só app. Nunca mais descubra um requisito de viagem tarde demais."/>
+  <meta name="theme-color" content="#031632"/>
+  <meta property="og:title" content="MyTripReady • Sua viagem, organizada e sem surpresas"/>
+  <meta property="og:description" content="Roteiro, documentos e checklist de exigências de entrada por país — tudo em um só app."/>
+  <meta property="og:type" content="website"/>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+
+  <style>
+:root {
+  --navy:    #031632;
+  --navy2:   #1A2B48;
+  --teal:    #006492;
+  --sky:     #58BCFD;
+  --sky2:    #CAE6FF;
+  --green:   #10B981;
+  --amber:   #D17E31;
+  --bg:      #F7F9FB;
+  --bg2:     #FFFFFF;
+  --text:    #191C1E;
+  --muted:   #44474D;
+  --muted2:  #75777E;
+  --line:    #E0E3E5;
+  --line2:   #C5C6CE;
+  --max:     1140px;
+  --font-d:  'Outfit', system-ui, sans-serif;
+  --font:    'Manrope', system-ui, sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0; padding: 0;
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  overflow-x: hidden;
+}
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+.wrap { width: min(var(--max), calc(100% - 40px)); margin: 0 auto; }
+
+/* ── NAV ── */
+.nav {
+  position: sticky; top: 0; z-index: 100;
+  backdrop-filter: blur(20px) saturate(1.4);
+  background: rgba(247,249,251,0.9);
+  border-bottom: 1px solid var(--line);
+}
+.nav-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 13px 0; gap: 16px;
+}
+.brand { display: flex; align-items: center; gap: 10px; }
+.brand-logo { height: 36px; width: 36px; border-radius: 9px; object-fit: contain; }
+.brand-name {
+  font-family: var(--font-d);
+  font-size: 18px; font-weight: 900;
+  letter-spacing: -0.5px; line-height: 1;
+}
+.brand-name .teal { color: var(--teal); }
+.brand-sub { font-size: 11px; color: var(--muted2); margin-top: 2px; }
+
+.nav-links { display: flex; gap: 4px; }
+.nav-links a {
+  font-size: 13px; color: var(--muted); font-weight: 500;
+  padding: 7px 13px; border-radius: 8px;
+  transition: color .15s, background .15s;
+}
+.nav-links a:hover { background: var(--sky2); color: var(--teal); }
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 11px 22px; border-radius: 12px;
+  font-family: var(--font); font-size: 14px; font-weight: 700;
+  cursor: pointer; white-space: nowrap; border: none;
+  transition: transform .15s, box-shadow .15s;
+}
+.btn:hover { transform: translateY(-1px); }
+.btn-teal {
+  background: var(--teal); color: #fff;
+  box-shadow: 0 4px 16px rgba(0,100,146,0.28);
+}
+.btn-teal:hover { background: #004A6D; box-shadow: 0 8px 24px rgba(0,100,146,0.38); }
+
+/* ── HERO ── */
+.hero {
+  position: relative;
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy2) 100%);
+  color: #fff;
+  overflow: hidden;
+  padding: 72px 0 0;
+}
+.hero::after {
+  content: "";
+  position: absolute; right: -10%; bottom: -30%;
+  width: 620px; height: 620px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(88,188,253,0.18) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-inner {
+  display: flex; align-items: center; gap: 48px;
+  padding-bottom: 56px; position: relative; z-index: 1;
+}
+.hero-text { flex: 1.1; min-width: 0; }
+.hero-kicker {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 12px; font-weight: 700; letter-spacing: .4px;
+  text-transform: uppercase; color: var(--sky);
+  background: rgba(88,188,253,0.12);
+  border: 1px solid rgba(88,188,253,0.3);
+  padding: 6px 14px; border-radius: 999px;
+  margin-bottom: 20px;
+}
+.hero-title {
+  font-family: var(--font-d);
+  font-size: clamp(32px, 4.4vw, 52px);
+  font-weight: 800; line-height: 1.08; letter-spacing: -1px;
+  margin: 0 0 18px;
+}
+.hero-title .sky { color: var(--sky); }
+.hero-desc {
+  font-size: 17px; line-height: 1.6; color: rgba(255,255,255,0.82);
+  max-width: 480px; margin: 0 0 30px;
+}
+.hero-ctas { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
+.store-badge img { height: 48px; }
+.store-badge-soon {
+  display: inline-flex; align-items: center; gap: 8px;
+  height: 48px; padding: 0 18px; border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.28);
+  color: rgba(255,255,255,0.72); font-size: 13px; font-weight: 600;
+}
+.hero-image-col {
+  flex: 0.85; display: flex; justify-content: center; align-items: center;
+}
+.hero-logo-badge {
+  width: 240px; height: 240px; border-radius: 52px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.14);
+  display: flex; align-items: center; justify-content: center;
+  padding: 28px;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.35);
+}
+.hero-logo-badge img { border-radius: 32px; }
+
+.hero-stats-bar { background: rgba(255,255,255,0.05); border-top: 1px solid rgba(255,255,255,0.1); }
+.hero-stats-inner {
+  display: flex; flex-wrap: wrap; gap: 32px;
+  padding: 20px 0; justify-content: center;
+}
+.hero-stat { text-align: center; }
+.hero-stat b { display: block; font-family: var(--font-d); font-size: 20px; color: var(--sky); }
+.hero-stat span { font-size: 12px; color: rgba(255,255,255,0.65); }
+
+/* ── SECTIONS ── */
+section { padding: 76px 0; }
+.section-kicker {
+  font-size: 12px; font-weight: 700; letter-spacing: .4px;
+  text-transform: uppercase; color: var(--teal);
+  margin-bottom: 10px;
+}
+.section-title {
+  font-family: var(--font-d);
+  font-size: clamp(26px, 3vw, 36px);
+  font-weight: 800; letter-spacing: -0.5px;
+  margin: 0 0 14px;
+}
+.section-desc { font-size: 16px; color: var(--muted); max-width: 560px; line-height: 1.6; }
+
+.features {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  margin-top: 40px;
+}
+.feature-card {
+  background: var(--bg2); border: 1px solid var(--line);
+  border-radius: 18px; padding: 26px;
+}
+.feature-icon {
+  width: 44px; height: 44px; border-radius: 12px;
+  background: var(--sky2); color: var(--teal);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px; margin-bottom: 16px;
+}
+.feature-card h3 {
+  font-family: var(--font-d); font-size: 16px; font-weight: 700;
+  margin: 0 0 8px;
+}
+.feature-card p { font-size: 14px; color: var(--muted); line-height: 1.55; margin: 0; }
+
+.cta-band {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy2) 100%);
+  color: #fff; border-radius: 24px;
+  padding: 52px 40px; text-align: center;
+}
+.cta-band h2 {
+  font-family: var(--font-d); font-size: clamp(24px,3vw,32px);
+  font-weight: 800; margin: 0 0 12px;
+}
+.cta-band p { color: rgba(255,255,255,0.78); margin: 0 0 28px; }
+.cta-band .hero-ctas { justify-content: center; }
+
+/* ── FOOTER ── */
+footer { background: var(--navy); color: rgba(255,255,255,0.7); padding: 48px 0 28px; }
+.footer-top {
+  display: flex; flex-wrap: wrap; gap: 32px;
+  justify-content: space-between; padding-bottom: 32px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+.footer-brand { display: flex; align-items: center; gap: 10px; }
+.footer-brand-logo { height: 36px; width: 36px; border-radius: 9px; }
+.footer-brand-name { font-family: var(--font-d); font-weight: 800; font-size: 16px; color: #fff; }
+.footer-brand-name .sky { color: var(--sky); }
+.footer-sub { font-size: 11px; color: rgba(255,255,255,0.5); margin-top: 2px; }
+.footer-links { display: flex; flex-direction: column; gap: 10px; }
+.footer-links a { font-size: 13px; color: rgba(255,255,255,0.7); transition: color .15s; }
+.footer-links a:hover { color: var(--sky); }
+.footer-bottom {
+  display: flex; flex-wrap: wrap; gap: 12px;
+  justify-content: space-between; align-items: center;
+  padding-top: 24px; font-size: 12px; color: rgba(255,255,255,0.45);
+}
+
+@media (max-width: 860px) {
+  .nav-links { display: none; }
+  .hero-inner { flex-direction: column; text-align: center; padding-top: 24px; }
+  .hero-desc { margin-left: auto; margin-right: auto; }
+  .hero-ctas { justify-content: center; }
+  .features { grid-template-columns: 1fr; }
+  .hero-logo-badge { width: 180px; height: 180px; }
+}
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="#">
+        <img class="brand-logo" src="assets/logo-mytripready.png" alt="MyTripReady"/>
+        <div>
+          <div class="brand-name">My<span class="teal">Trip</span>Ready</div>
+          <div class="brand-sub">by VeDigitalHub</div>
+        </div>
+      </a>
+      <div class="nav-links" aria-label="Navegação">
+        <a href="#recursos">Recursos</a>
+        <a href="#baixar">Baixar</a>
+      </div>
+      <a class="btn btn-teal" href="#baixar">Baixar o app</a>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="wrap hero-inner">
+      <div class="hero-text">
+        <div class="hero-kicker">Planejamento de viagem inteligente</div>
+        <h1 class="hero-title">Sua viagem, <span class="sky">organizada</span> e sem surpresas</h1>
+        <p class="hero-desc">
+          Roteiro, documentos e a checklist de exigências de entrada de cada país da sua viagem —
+          tudo em um só app. Nunca mais descubra um visto, vacina ou seguro obrigatório
+          <b>tarde demais</b>.
+        </p>
+        <div class="hero-ctas" id="baixar">
+          <a class="store-badge" href="https://play.google.com/store/apps/details?id=com.vedigitalhub.mytripready" target="_blank" rel="noopener" aria-label="Baixar no Google Play">
+            <img src="../assets/badge-google-play.svg" alt="Disponível no Google Play"/>
+          </a>
+          <span class="store-badge-soon">🍎 Em breve na App Store</span>
+        </div>
+      </div>
+      <div class="hero-image-col">
+        <div class="hero-logo-badge">
+          <img src="assets/logo-mytripready.png" alt="Ícone do MyTripReady"/>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-stats-bar">
+      <div class="wrap hero-stats-inner">
+        <div class="hero-stat"><b>1ª viagem</b><span>grátis pra testar</span></div>
+        <div class="hero-stat"><b>Checklist por país</b><span>gerada por IA + fontes oficiais</span></div>
+        <div class="hero-stat"><b>Família</b><span>viagem compartilhada, dados privados</span></div>
+      </div>
+    </div>
+  </header>
+
+  <section id="recursos">
+    <div class="wrap">
+      <div class="section-kicker">Recursos</div>
+      <h2 class="section-title">Tudo que sua viagem precisa, num só lugar</h2>
+      <p class="section-desc">Do planejamento da rota até o embarque — o MyTripReady acompanha cada etapa.</p>
+
+      <div class="features">
+        <div class="feature-card">
+          <div class="feature-icon">🗺️</div>
+          <h3>Roteiro por trecho</h3>
+          <p>Monte a rota da viagem perna a perna — o app já entende travessias de fronteira e zonas como o Schengen.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">✅</div>
+          <h3>Checklist de exigências</h3>
+          <p>Visto, vacina, seguro viagem e mais — calculado pra cada viajante e cada país da rota, com fonte oficial.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📄</div>
+          <h3>Cofre de documentos</h3>
+          <p>Passaporte, passagens e reservas num só lugar, com leitura automática por foto ou PDF.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">👨‍👩‍👧‍👦</div>
+          <h3>Viagem em família</h3>
+          <p>Compartilhe a viagem com quem for junto — cada núcleo familiar mantém seus dados privados.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🔔</div>
+          <h3>Lembretes de contagem regressiva</h3>
+          <p>Avisos automáticos de quanto falta pra viagem, com recomendações no momento certo.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🌦️</div>
+          <h3>Clima e sugestão de mala</h3>
+          <p>Previsão do tempo do destino e sugestão do que levar na mala, por perna da viagem.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="cta-band">
+        <h2>Pronto pra viajar sem sustos?</h2>
+        <p>Baixe o MyTripReady e monte a checklist da sua próxima viagem em minutos.</p>
+        <div class="hero-ctas">
+          <a class="store-badge" href="https://play.google.com/store/apps/details?id=com.vedigitalhub.mytripready" target="_blank" rel="noopener" aria-label="Baixar no Google Play">
+            <img src="../assets/badge-google-play.svg" alt="Disponível no Google Play"/>
+          </a>
+          <span class="store-badge-soon">🍎 Em breve na App Store</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <img class="footer-brand-logo" src="assets/logo-mytripready.png" alt="MyTripReady"/>
+          <div>
+            <div class="footer-brand-name">My<span class="sky">Trip</span>Ready</div>
+            <div class="footer-sub">by VeDigitalHub</div>
+          </div>
+        </div>
+        <div class="footer-links">
+          <a href="#recursos">Recursos</a>
+          <a href="#baixar">Baixar</a>
+        </div>
+        <div class="footer-links">
+          <a href="https://mytripready-app.web.app/privacidade.html" target="_blank" rel="noopener">Política de Privacidade</a>
+          <a href="https://mytripready-app.web.app/termos.html" target="_blank" rel="noopener">Termos de Uso</a>
+          <a href="https://mytripready-app.web.app/exclusao-de-conta.html" target="_blank" rel="noopener">Exclusão de Conta</a>
+        </div>
+        <div class="footer-links">
+          <a href="https://play.google.com/store/apps/details?id=com.vedigitalhub.mytripready" target="_blank" rel="noopener">Google Play</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>© 2026 VeDigitalHub. Todos os direitos reservados.</div>
+        <div><a href="https://www.vedigitalhub.com/">vedigitalhub.com</a></div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
