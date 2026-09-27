@@ -1,0 +1,21 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": [
+          "9DLXGNPRYD.com.vedigitalhub.savvi"
+        ],
+        "components": [
+          {
+            "/": "/savvi/c",
+            "comment": "Cole\u00e7\u00e3o compartilhada"
+          },
+          {
+            "/": "/savvi/c/",
+            "comment": "Cole\u00e7\u00e3o compartilhada"
+          }
+        ]
+      }
+    ]
+  }
+}

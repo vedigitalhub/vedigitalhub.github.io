@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Coleção no Savvi</title>
+  <meta name="theme-color" content="#5b4cf0">
+  <meta property="og:title" content="Coleção no Savvi">
+  <meta property="og:description" content="No Savvi, os itens chegam organizados pela IA: lugares no mapa, receitas com lista de compras, filmes com onde assistir.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://www.vedigitalhub.com/savvi/assets/app-icon.png">
+  <link rel="icon" type="image/png" href="../assets/app-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/site.css">
+  <style>
+    .share { padding: 40px 0 64px; }
+    .share-card { max-width: 520px; margin: 0 auto; background: var(--surface); border: 1px solid var(--line);
+      border-radius: var(--radius); padding: 28px; box-shadow: 0 20px 60px rgba(22, 22, 29, 0.08); }
+    .share-emoji { font-size: 48px; line-height: 1; }
+    .share-card h1 { font-size: 28px; margin: 12px 0 4px; letter-spacing: -0.02em; }
+    .share-meta { color: var(--muted); margin: 0 0 16px; }
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+    .chip { background: var(--violet-soft); color: var(--violet); border-radius: 999px; padding: 6px 12px;
+      font-size: 13px; font-weight: 600; }
+    .thumbs { position: relative; display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px;
+      border-radius: 16px; overflow: hidden; margin-bottom: 20px; }
+    .thumbs img { width: 100%; aspect-ratio: 1; object-fit: cover; filter: blur(8px); transform: scale(1.1); }
+    .thumbs .lock { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+      background: rgba(22, 22, 29, 0.35); color: #fff; font-weight: 700; text-align: center; padding: 12px; }
+    .pitch { color: var(--muted); margin: 0 0 20px; }
+    .actions { display: grid; gap: 10px; }
+    .actions .btn { width: 100%; }
+    .hint { color: var(--faint); font-size: 13px; text-align: center; margin: 12px 0 0; }
+    .state { text-align: center; color: var(--muted); padding: 24px 0; }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="../">
+        <img src="../assets/app-icon.png" alt="" width="36" height="36">
+        <div><div class="brand-name">Savvi</div><div class="brand-sub">by VeDigitalHub</div></div>
+      </a>
+    </div>
+  </nav>
+  <main class="wrap share">
+    <div class="share-card" id="share"></div>
+  </main>
+  <script>
+  const TEXT = {"pt": {"title": "Coleção no Savvi", "by": "Compartilhada por {name}", "items": {"one": "1 item", "other": "{n} itens"}, "locked": "Abra no Savvi para ver tudo", "pitch": "No Savvi, os itens chegam organizados pela IA: lugares no mapa, receitas com lista de compras, filmes com onde assistir.", "open": "Abrir no Savvi", "installed": "Já tem o app? Toque em “Abrir no Savvi”.", "soon": "Em breve na App Store e no Google Play", "loading": "Carregando…", "notFound": "Este link não existe ou foi desativado.", "error": "Não foi possível carregar a coleção. Tente de novo em instantes.", "categories": {"place": "Lugares", "recipe": "Receitas", "travel": "Viagem", "product": "Produtos", "workout": "Treinos", "movie_show": "Filmes e séries", "book": "Livros", "tip": "Dicas", "event": "Eventos", "other": "Outros"}}, "en": {"title": "Collection on Savvi", "by": "Shared by {name}", "items": {"one": "1 item", "other": "{n} items"}, "locked": "Open in Savvi to see everything", "pitch": "In Savvi, items arrive organized by AI: places on a map, recipes with a shopping list, movies with where to watch.", "open": "Open in Savvi", "installed": "Already have the app? Tap “Open in Savvi”.", "soon": "Coming soon to the App Store and Google Play", "loading": "Loading…", "notFound": "This link doesn't exist or was turned off.", "error": "Couldn't load the collection. Please try again shortly.", "categories": {"place": "Places", "recipe": "Recipes", "travel": "Travel", "product": "Products", "workout": "Workouts", "movie_show": "Movies & shows", "book": "Books", "tip": "Tips", "event": "Events", "other": "Other"}}, "es": {"title": "Colección en Savvi", "by": "Compartida por {name}", "items": {"one": "1 elemento", "other": "{n} elementos"}, "locked": "Abre en Savvi para ver todo", "pitch": "En Savvi, los elementos llegan organizados por la IA: lugares en el mapa, recetas con lista de compras, películas con dónde verlas.", "open": "Abrir en Savvi", "installed": "¿Ya tienes la app? Toca “Abrir en Savvi”.", "soon": "Próximamente en App Store y Google Play", "loading": "Cargando…", "notFound": "Este enlace no existe o fue desactivado.", "error": "No se pudo cargar la colección. Inténtalo de nuevo en un momento.", "categories": {"place": "Lugares", "recipe": "Recetas", "travel": "Viaje", "product": "Productos", "workout": "Entrenamientos", "movie_show": "Películas y series", "book": "Libros", "tip": "Consejos", "event": "Eventos", "other": "Otros"}}};
+  const STORES = {"ios": null, "android": null};
+  const lang = (navigator.language || "en").slice(0, 2);
+  const t = TEXT[lang] || TEXT.en;
+  document.documentElement.lang = lang in TEXT ? lang : "en";
+  document.title = t.title;
+  const root = document.getElementById("share");
+  const el = (tag, cls, text) => {
+    const e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (text != null) e.textContent = text;
+    return e;
+  };
+  const state = (text) => root.replaceChildren(el("p", "state", text));
+  const id = new URLSearchParams(location.search).get("id") || "";
+
+  function render(c) {
+    const count = c.itemCount === 1 ? t.items.one : t.items.other.replace("{n}", c.itemCount);
+    const meta = [c.ownerName ? t.by.replace("{name}", c.ownerName) : null, count].filter(Boolean).join(" · ");
+    const nodes = [];
+    if (c.emoji) nodes.push(el("div", "share-emoji", c.emoji));
+    nodes.push(el("h1", null, c.name), el("p", "share-meta", meta));
+    const chips = el("div", "chips");
+    for (const [key, n] of Object.entries(c.categories || {})) {
+      chips.append(el("span", "chip", `${t.categories[key] || t.categories.other} · ${n}`));
+    }
+    nodes.push(chips);
+    if ((c.thumbnails || []).length) {
+      const thumbs = el("div", "thumbs");
+      for (const src of c.thumbnails) {
+        const img = el("img");
+        img.src = src;
+        img.alt = "";
+        img.loading = "lazy";
+        thumbs.append(img);
+      }
+      thumbs.append(el("div", "lock", t.locked));
+      nodes.push(thumbs);
+    }
+    nodes.push(el("p", "pitch", t.pitch));
+    const actions = el("div", "actions");
+    const open = el("a", "btn btn-primary", t.open);
+    open.href = "savvi://www.vedigitalhub.com/savvi/c/?id=" + encodeURIComponent(id);
+    actions.append(open);
+    const ios = /iPhone|iPad|iPod/.test(navigator.userAgent);
+    const store = ios ? STORES.ios : STORES.android;
+    if (store) {
+      const a = el("a", "btn btn-ghost", ios ? "App Store" : "Google Play");
+      a.href = store;
+      actions.append(a);
+    } else {
+      actions.append(el("p", "hint", t.soon));
+    }
+    nodes.push(actions, el("p", "hint", t.installed));
+    root.replaceChildren(...nodes);
+  }
+
+  if (!/^[A-Za-z0-9]{1,32}$/.test(id)) {
+    state(t.notFound);
+  } else {
+    state(t.loading);
+    fetch("https://southamerica-east1-vedigitalhub-savvi.cloudfunctions.net/getSharedCollection", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ data: { slug: id } }),
+    })
+      .then((r) => r.json())
+      .then((body) => {
+        if (body.result) return render(body.result);
+        state(body.error && body.error.status === "NOT_FOUND" ? t.notFound : t.error);
+      })
+      .catch(() => state(t.error));
+  }
+  </script>
+</body>
+</html>

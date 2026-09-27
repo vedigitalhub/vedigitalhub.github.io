@@ -1,0 +1,14 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.vedigitalhub.savvi",
+      "sha256_cert_fingerprints": [
+        "0D:1D:5F:97:53:29:23:F3:77:A9:52:29:1D:B9:B7:04:FE:F2:9C:4A:35:02:F2:69:EC:2A:EF:AC:52:DE:CA:0F"
+      ]
+    }
+  }
+]
