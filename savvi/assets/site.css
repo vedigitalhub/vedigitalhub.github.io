@@ -120,6 +120,21 @@ h1.hero-title { font-size: clamp(34px, 5vw, 56px); line-height: 1.05; letter-spa
 .phone .screen p { margin: 0; font-size: 13px; font-weight: 600; opacity: 0.9; }
 .phone.small { width: 200px; }
 
+/* Imagens das lojas (assets/promo/{idioma}/0N.jpg) */
+.promo-hero { display: flex; justify-content: center; }
+.promo-hero img {
+  width: 300px; max-width: 78vw; height: auto; border-radius: 28px;
+  box-shadow: 0 30px 80px rgba(22, 22, 29, 0.22);
+}
+.promos {
+  width: 100%; display: flex; gap: 18px; overflow-x: auto; scroll-snap-type: x mandatory;
+  padding: 6px 4px 22px; -webkit-overflow-scrolling: touch;
+}
+.promos img {
+  flex: 0 0 auto; width: 230px; height: auto; border-radius: 22px; scroll-snap-align: start;
+  box-shadow: 0 16px 40px rgba(22, 22, 29, 0.14);
+}
+
 /* Seções */
 section { padding: 72px 0; }
 .section-kicker { font-size: 13px; font-weight: 700; color: var(--violet); text-transform: uppercase; letter-spacing: 0.5px; }
@@ -229,6 +244,7 @@ footer { border-top: 1px solid var(--line); padding: 40px 0 28px; margin-top: 24
   .ctas { justify-content: center; }
   .steps, .grid, .trust, .plans { grid-template-columns: 1fr; }
   .phone { width: 230px; }
+  .promos img { width: 200px; }
   .doc { padding: 22px; }
 }
 @media (max-width: 480px) {

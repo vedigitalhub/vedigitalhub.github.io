@@ -4,9 +4,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex">
-  <title>Coleção no Savvi</title>
+  <title>Item no Savvi</title>
   <meta name="theme-color" content="#5b4cf0">
-  <meta property="og:title" content="Coleção no Savvi">
+  <meta property="og:title" content="Item no Savvi">
   <meta property="og:description" content="No Savvi, os itens chegam organizados pela IA: lugares no mapa, receitas com lista de compras, filmes com onde assistir.">
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://www.vedigitalhub.com/savvi/assets/app-icon.png">
@@ -54,7 +54,7 @@
   </main>
   <script>
   const TEXT = {"pt": {"title": "Coleção no Savvi", "itemTitle": "Item no Savvi", "by": "Compartilhada por {name}", "items": {"one": "1 item", "other": "{n} itens"}, "locked": "Abra no Savvi para ver tudo", "pitch": "No Savvi, os itens chegam organizados pela IA: lugares no mapa, receitas com lista de compras, filmes com onde assistir.", "open": "Abrir no Savvi", "installed": "Já tem o app? Toque em “Abrir no Savvi”.", "soon": "Em breve na App Store e no Google Play", "loading": "Carregando…", "notFound": "Este link não existe ou foi desativado.", "error": "Não foi possível carregar a coleção. Tente de novo em instantes.", "categories": {"place": "Lugares", "recipe": "Receitas", "travel": "Viagem", "product": "Produtos", "workout": "Treinos", "movie_show": "Filmes e séries", "book": "Livros", "tip": "Dicas", "event": "Eventos", "other": "Outros"}}, "en": {"title": "Collection on Savvi", "itemTitle": "Item on Savvi", "by": "Shared by {name}", "items": {"one": "1 item", "other": "{n} items"}, "locked": "Open in Savvi to see everything", "pitch": "In Savvi, items arrive organized by AI: places on a map, recipes with a shopping list, movies with where to watch.", "open": "Open in Savvi", "installed": "Already have the app? Tap “Open in Savvi”.", "soon": "Coming soon to the App Store and Google Play", "loading": "Loading…", "notFound": "This link doesn't exist or was turned off.", "error": "Couldn't load the collection. Please try again shortly.", "categories": {"place": "Places", "recipe": "Recipes", "travel": "Travel", "product": "Products", "workout": "Workouts", "movie_show": "Movies & shows", "book": "Books", "tip": "Tips", "event": "Events", "other": "Other"}}, "es": {"title": "Colección en Savvi", "itemTitle": "Elemento en Savvi", "by": "Compartida por {name}", "items": {"one": "1 elemento", "other": "{n} elementos"}, "locked": "Abre en Savvi para ver todo", "pitch": "En Savvi, los elementos llegan organizados por la IA: lugares en el mapa, recetas con lista de compras, películas con dónde verlas.", "open": "Abrir en Savvi", "installed": "¿Ya tienes la app? Toca “Abrir en Savvi”.", "soon": "Próximamente en App Store y Google Play", "loading": "Cargando…", "notFound": "Este enlace no existe o fue desactivado.", "error": "No se pudo cargar la colección. Inténtalo de nuevo en un momento.", "categories": {"place": "Lugares", "recipe": "Recetas", "travel": "Viaje", "product": "Productos", "workout": "Entrenamientos", "movie_show": "Películas y series", "book": "Libros", "tip": "Consejos", "event": "Eventos", "other": "Otros"}}};
-  const KIND = "c";
+  const KIND = "i";
   const STORES = {"ios": null, "android": null};
   const lang = (navigator.language || "en").slice(0, 2);
   const t = TEXT[lang] || TEXT.en;
@@ -126,7 +126,7 @@
     state(t.notFound);
   } else {
     state(t.loading);
-    fetch("https://southamerica-east1-vedigitalhub-savvi.cloudfunctions.net/getSharedCollection", {
+    fetch("https://southamerica-east1-vedigitalhub-savvi.cloudfunctions.net/getSharedItem", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ data: { slug: id } }),
