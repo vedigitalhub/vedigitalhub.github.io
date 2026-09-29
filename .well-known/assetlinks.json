@@ -7,7 +7,9 @@
       "namespace": "android_app",
       "package_name": "com.vedigitalhub.savvi",
       "sha256_cert_fingerprints": [
-        "0D:1D:5F:97:53:29:23:F3:77:A9:52:29:1D:B9:B7:04:FE:F2:9C:4A:35:02:F2:69:EC:2A:EF:AC:52:DE:CA:0F"
+        "0D:1D:5F:97:53:29:23:F3:77:A9:52:29:1D:B9:B7:04:FE:F2:9C:4A:35:02:F2:69:EC:2A:EF:AC:52:DE:CA:0F",
+        "10:01:2E:AE:16:CC:B3:CA:47:2C:AC:26:AA:AE:E7:41:5F:39:1A:5A:A5:C9:7A:7C:70:14:90:02:0E:1C:FC:A2",
+        "7B:44:74:DC:B2:DE:9A:5E:F8:D6:F9:F3:B8:5A:F7:99:74:04:6C:30:29:FD:DB:DC:6D:00:45:0D:BF:81:25:4B"
       ]
     }
   }
