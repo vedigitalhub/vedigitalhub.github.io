@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Baixe o Savvi</title>
+  <meta name="description" content="Tudo o que você salva nas redes, organizado pela IA: lugares no mapa, receitas com lista de compras e busca que entende você.">
+  <meta name="theme-color" content="#5b4cf0">
+  <meta property="og:title" content="Baixe o Savvi">
+  <meta property="og:description" content="Tudo o que você salva nas redes, organizado pela IA: lugares no mapa, receitas com lista de compras e busca que entende você.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.vedigitalhub.com/savvi/baixar/">
+  <meta property="og:image" content="https://www.vedigitalhub.com/savvi/assets/og/og-pt.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/png" href="../assets/app-icon.png">
+  <link rel="apple-touch-icon" href="../assets/app-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/site.css">
+  <link rel="canonical" href="https://www.vedigitalhub.com/savvi/baixar/">
+  <script>
+  // Celular: direto para a loja certa, antes de desenhar a página.
+  (function () {
+    var ua = navigator.userAgent;
+    var ios = /iPhone|iPad|iPod/.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1);
+    var store = /Android/.test(ua) ? "https://play.google.com/store/apps/details?id=com.vedigitalhub.savvi" : ios ? "https://apps.apple.com/br/app/savvi-organize-o-que-salva/id6816232839" : null;
+    if (store) { document.documentElement.dataset.redirect = "1"; location.replace(store); }
+  })();
+  </script>
+  <style>
+    main.download { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 22px; padding: 32px 16px; text-align: center; }
+    main.download img.icon { width: 96px; height: 96px; border-radius: 22px; box-shadow: 0 12px 30px rgba(91,76,240,.25); }
+    main.download h1 { font-size: clamp(28px, 6vw, 40px); line-height: 1.1; letter-spacing: -.02em; }
+    main.download p { color: var(--muted); max-width: 440px; }
+    main.download .ctas { justify-content: center; }
+    main.download .opening { display: none; }
+    [data-redirect] main.download .opening { display: block; }
+  </style>
+</head>
+<body>
+  <main class="download">
+    <img class="icon" src="../assets/app-icon.png" alt="Savvi">
+    <h1 id="title">Baixe o Savvi</h1>
+    <p id="lead">Tudo o que você salva, organizado pela IA.</p>
+    <p class="opening" id="opening">Abrindo a loja…</p>
+    <div class="ctas" id="badges"><a class="store-badge" href="https://apps.apple.com/br/app/savvi-organize-o-que-salva/id6816232839" target="_blank" rel="noopener" aria-label="Baixar na App Store"><img src="../../assets/badge-app-store.svg" alt="Download on the App Store"></a><a class="store-badge" href="https://play.google.com/store/apps/details?id=com.vedigitalhub.savvi" target="_blank" rel="noopener" aria-label="Baixar no Google Play"><img src="../../assets/badge-google-play.svg" alt="Get it on Google Play"></a></div>
+    <a id="site" href="../">Conheça o Savvi</a>
+  </main>
+  <script>
+  const TEXT = {"pt": {"title": "Baixe o Savvi", "description": "Tudo o que você salva nas redes, organizado pela IA: lugares no mapa, receitas com lista de compras e busca que entende você.", "lead": "Tudo o que você salva, organizado pela IA.", "opening": "Abrindo a loja…", "site": "Conheça o Savvi", "badges": "<a class=\"store-badge\" href=\"https://apps.apple.com/br/app/savvi-organize-o-que-salva/id6816232839\" target=\"_blank\" rel=\"noopener\" aria-label=\"Baixar na App Store\"><img src=\"../../assets/badge-app-store.svg\" alt=\"Download on the App Store\"></a><a class=\"store-badge\" href=\"https://play.google.com/store/apps/details?id=com.vedigitalhub.savvi\" target=\"_blank\" rel=\"noopener\" aria-label=\"Baixar no Google Play\"><img src=\"../../assets/badge-google-play.svg\" alt=\"Get it on Google Play\"></a>", "site_url": "../"}, "en": {"title": "Get Savvi", "description": "Everything you save online, organized by AI: places on a map, recipes with a shopping list and search that gets you.", "lead": "Everything you save, organized by AI.", "opening": "Opening the store…", "site": "Learn more about Savvi", "badges": "<a class=\"store-badge\" href=\"https://apps.apple.com/br/app/savvi-organize-o-que-salva/id6816232839\" target=\"_blank\" rel=\"noopener\" aria-label=\"Download on the App Store\"><img src=\"../../assets/badge-app-store.svg\" alt=\"Download on the App Store\"></a><a class=\"store-badge\" href=\"https://play.google.com/store/apps/details?id=com.vedigitalhub.savvi\" target=\"_blank\" rel=\"noopener\" aria-label=\"Get it on Google Play\"><img src=\"../../assets/badge-google-play.svg\" alt=\"Get it on Google Play\"></a>", "site_url": "../index-en.html"}, "es": {"title": "Descarga Savvi", "description": "Todo lo que guardas en redes, organizado por IA: lugares en el mapa, recetas con lista de compras y una búsqueda que te entiende.", "lead": "Todo lo que guardas, organizado por IA.", "opening": "Abriendo la tienda…", "site": "Conoce Savvi", "badges": "<a class=\"store-badge\" href=\"https://apps.apple.com/br/app/savvi-organize-o-que-salva/id6816232839\" target=\"_blank\" rel=\"noopener\" aria-label=\"Descargar en App Store\"><img src=\"../../assets/badge-app-store.svg\" alt=\"Download on the App Store\"></a><a class=\"store-badge\" href=\"https://play.google.com/store/apps/details?id=com.vedigitalhub.savvi\" target=\"_blank\" rel=\"noopener\" aria-label=\"Descargar en Google Play\"><img src=\"../../assets/badge-google-play.svg\" alt=\"Get it on Google Play\"></a>", "site_url": "../index-es.html"}};
+  const lang = (navigator.language || "pt").slice(0, 2);
+  const t = TEXT[lang] || TEXT.en;
+  document.documentElement.lang = lang in TEXT ? (lang === "pt" ? "pt-BR" : lang) : "en";
+  document.title = t.title;
+  document.getElementById("title").textContent = t.title;
+  document.getElementById("lead").textContent = t.lead;
+  document.getElementById("opening").textContent = t.opening;
+  document.getElementById("badges").innerHTML = t.badges;
+  const site = document.getElementById("site");
+  site.textContent = t.site;
+  site.href = t.site_url;
+  </script>
+</body>
+</html>
