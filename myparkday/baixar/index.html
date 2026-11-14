@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Baixe o MyParkDay</title>
+  <meta name="description" content="Roteiros inteligentes para parques: organize seu dia com mais estratégia e menos espera.">
+  <meta name="theme-color" content="#0EA5E9">
+  <meta property="og:title" content="Baixe o MyParkDay">
+  <meta property="og:description" content="Roteiros inteligentes para parques: organize seu dia com mais estratégia e menos espera.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.vedigitalhub.com/myparkday/baixar/">
+  <meta property="og:image" content="https://www.vedigitalhub.com/myparkday/assets/logo-myparkday2.png">
+  <meta name="twitter:card" content="summary">
+  <link rel="icon" type="image/png" href="../assets/logo-myparkday2.png">
+  <link rel="apple-touch-icon" href="../assets/logo-myparkday2.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="canonical" href="https://www.vedigitalhub.com/myparkday/baixar/">
+  <script>
+  // Celular: direto para a loja certa, antes de desenhar a página.
+  (function () {
+    var ua = navigator.userAgent;
+    var ios = /iPhone|iPad|iPod/.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1);
+    var store = /Android/.test(ua) ? "https://play.google.com/store/apps/details?id=com.vedigitalhub.myparkday" : ios ? "https://apps.apple.com/br/app/myparkday/id6762487908" : null;
+    if (store) { document.documentElement.dataset.redirect = "1"; location.replace(store); }
+  })();
+  </script>
+  <style>
+    :root { --blue: #0EA5E9; --bg: #F0F9FF; --text: #071525; --muted: #4B5563; }
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; }
+    body { background: linear-gradient(180deg, #E0F2FE 0%, var(--bg) 60%); color: var(--text); font-family: 'Manrope', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+    main.download { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 22px; padding: 32px 16px; text-align: center; }
+    main.download img.icon { width: 140px; height: auto; border-radius: 28px; box-shadow: 0 12px 30px rgba(14,165,233,.25); }
+    main.download h1 { margin: 0; font-family: 'Outfit', system-ui, sans-serif; font-weight: 800; font-size: clamp(28px, 6vw, 40px); line-height: 1.1; letter-spacing: -.02em; }
+    main.download p { margin: 0; color: var(--muted); max-width: 440px; font-size: 17px; line-height: 1.5; }
+    main.download .ctas { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+    .store-badge { display: inline-flex; height: 48px; }
+    .store-badge img { height: 48px; width: auto; display: block; }
+    main.download a#site { color: var(--blue); font-weight: 600; text-decoration: none; }
+    main.download a#site:hover { text-decoration: underline; }
+    main.download .opening { display: none; }
+    [data-redirect] main.download .opening { display: block; }
+  </style>
+</head>
+<body>
+  <main class="download">
+    <img class="icon" src="../assets/logo-myparkday2.png" alt="MyParkDay">
+    <h1 id="title">Baixe o MyParkDay</h1>
+    <p id="lead">Roteiros inteligentes para parques, com mais estratégia e menos espera.</p>
+    <p class="opening" id="opening">Abrindo a loja…</p>
+    <div class="ctas" id="badges"><a class="store-badge" href="https://apps.apple.com/br/app/myparkday/id6762487908" target="_blank" rel="noopener" aria-label="Baixar na App Store"><img src="../../assets/badge-app-store.svg" alt="Download on the App Store"></a><a class="store-badge" href="https://play.google.com/store/apps/details?id=com.vedigitalhub.myparkday" target="_blank" rel="noopener" aria-label="Baixar no Google Play"><img src="../../assets/badge-google-play.svg" alt="Get it on Google Play"></a></div>
+    <a id="site" href="../">Conheça o MyParkDay</a>
+  </main>
+  <script>
+  const TEXT = {
+    pt: { title: "Baixe o MyParkDay", lead: "Roteiros inteligentes para parques, com mais estratégia e menos espera.", opening: "Abrindo a loja…", site: "Conheça o MyParkDay", site_url: "../", apple: "Baixar na App Store", google: "Baixar no Google Play" },
+    en: { title: "Get MyParkDay", lead: "Smart theme park itineraries: more strategy, less waiting.", opening: "Opening the store…", site: "Learn more about MyParkDay", site_url: "../index-en.html", apple: "Download on the App Store", google: "Get it on Google Play" }
+  };
+  const lang = (navigator.language || "pt").slice(0, 2);
+  const t = TEXT[lang] || TEXT.en;
+  document.documentElement.lang = lang === "pt" ? "pt-BR" : "en";
+  document.title = t.title;
+  document.getElementById("title").textContent = t.title;
+  document.getElementById("lead").textContent = t.lead;
+  document.getElementById("opening").textContent = t.opening;
+  const badges = document.querySelectorAll("#badges a");
+  badges[0].setAttribute("aria-label", t.apple);
+  badges[1].setAttribute("aria-label", t.google);
+  const site = document.getElementById("site");
+  site.textContent = t.site;
+  site.href = t.site_url;
+  </script>
+</body>
+</html>
